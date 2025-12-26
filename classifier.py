@@ -19,7 +19,7 @@ from sentence_transformers import SentenceTransformer
 
 # --- CONFIG ---
 MODEL_NAME = "intfloat/multilingual-e5-large-instruct"
-TASK_INSTRUCTION = "Classify this email as phishing or legitimate based on its content, sender patterns, and suspicious indicators"
+TASK_INSTRUCTION = "Retrieve emails that are similar in intent and legitimacy to this email"
 
 # --- LABELED EXAMPLES (few-shot learning) ---
 # The instruct model learns what phishing looks like from these examples
