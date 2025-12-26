@@ -1,0 +1,938 @@
+Delivered-To: user@example.com
+Received: by 2002:ab0:1d0f:0:b0:937:2626:39bf with SMTP id j15csp245856uak;
+        Wed, 17 Dec 2025 07:12:48 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEtysUyVyHkE8w76/vRtUM7cBpxHmQOnKeecqZnvY+6YdrjV7zj+5PY4RhkuWBuOYUJqtzc
+X-Received: by 2002:a05:6102:f9c:b0:5df:b2cd:12a9 with SMTP id ada2fe7eead31-5e827696969mr5700748137.4.1765984368025;
+        Wed, 17 Dec 2025 07:12:48 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1765984368; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Zl89Q/jmQNGEn5PPLVhsFwTIS6QBvGFHbDudZaoSZOumBmqTfAPNE18algddsi7lSD
+         tGV3iMofTFiqyiUBEb4sGu8XZcU8VZl3Iq59Qm8dL8nUvlZlty6qplSC/aBQaM9WqeLS
+         jI9CSJ178DrFxfQpVSUHGbxZZ00vKbNJaTOxrTOPZN3bjWfpyd+u3GBbc0Kfl8E37XTb
+         ZjGnrXyIWcg0uU9CjzZiHEyzdwVg5rkru7IuK7rY9Q8e3BdAzF5gltUyuVC7xT1dR1Wh
+         OZx9PN4DBbM4NcpF9fYSKJkbZN3evngOHnlLqGDlqcqcw6nktA/XSe13vexPm02XsclJ
+         2c7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:list-unsubscribe-post:precedence:form-sub:mime-version
+         :subject:message-id:to:reply-to:from:date:list-unsubscribe
+         :dkim-signature:dkim-signature;
+        bh=ZhlnFoW8lQ6sofjQb3CWCs/S/GZ5kgrofEaujUljNuc=;
+        fh=YxhW1nkReNhsME3KXmHt5MgBHY2Y2UhfiSAxwHuZZSM=;
+        b=VMywClFeXGDjjQNKRD+OCTQnMzWWt94+FeKMmQeOpgGkLqQIRoov6+9vdFcbuqr1mi
+         uWwaOeVDDeMJDHGJlcv+QL/Ck6AJTIrMIxcWPZOaRnKkYqYSvcBnxcUQl0Y9NhWJ44X9
+         NQ0yYPaKv2IraHbSW3S45qyWbvzPfVWtlI5HnO+uEbl3eE+AtVtz2PTK9ugNuBgBBmoe
+         EUKiCrKwwu2cVrmLhl9AOYArWee92qDS05LDL7+mHpWqVfjJQt/kxA74HkAvICKAI2k3
+         eCV67mOoVI1hSNtkDzzhjg3cT31QLnAp2Cc+ym/7GpU7BUkzSPBnIA7fzbo8pEdH4XNv
+         yS4A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@bf01x.hubspotemail.net header.s=hs1 header.b=XwB+VfVS;
+       dkim=pass header.i=@learn.deepgram.com header.s=hs1-6890003 header.b="GS1/Nsi7";
+       spf=pass (google.com: domain of 1axcktjydnuvd5vhnoaa922uha30j9c8p22tck-user=example.com@bf01x.hubspotemail.net designates 158.247.18.72 as permitted sender) smtp.mailfrom="1axcktjydnuvd5vhnoaa922uha30j9c8p22tck-user=example.com@bf01x.hubspotemail.net";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=deepgram.com
+Return-Path: <1axcktjydnuvd5vhnoaa922uha30j9c8p22tck-user=example.com@bf01x.hubspotemail.net>
+Received: from bid46my.bf01x.hubspotemail.net (bid46my.bf01x.hubspotemail.net. [158.247.18.72])
+        by mx.google.com with ESMTPS id 6a1803df08f44-8899dbd9617si167847106d6.165.2025.12.17.07.12.47
+        for <user@example.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 17 Dec 2025 07:12:48 -0800 (PST)
+Received-SPF: pass (google.com: domain of 1axcktjydnuvd5vhnoaa922uha30j9c8p22tck-user=example.com@bf01x.hubspotemail.net designates 158.247.18.72 as permitted sender) client-ip=158.247.18.72;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@bf01x.hubspotemail.net header.s=hs1 header.b=XwB+VfVS;
+       dkim=pass header.i=@learn.deepgram.com header.s=hs1-6890003 header.b="GS1/Nsi7";
+       spf=pass (google.com: domain of 1axcktjydnuvd5vhnoaa922uha30j9c8p22tck-user=example.com@bf01x.hubspotemail.net designates 158.247.18.72 as permitted sender) smtp.mailfrom="1axcktjydnuvd5vhnoaa922uha30j9c8p22tck-user=example.com@bf01x.hubspotemail.net";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=deepgram.com
+Received: by 172.16.224.35 with SMTP id a0tfyza0s969w3co26jzfqh2u1vc2olwu032aqague;
+        Wed, 17 Dec 2025 15:12:47 GMT
+DKIM-Signature: v=1; s=hs1; d=bf01x.hubspotemail.net;
+         i=@bf01x.hubspotemail.net;
+         h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id:list-unsubscribe-post;
+         a=rsa-sha256; c=relaxed/relaxed;
+         bh=ZhlnFoW8lQ6sofjQb3CWCs/S/GZ5kgrofEaujUljNuc=;
+         b=XwB+VfVSq2/ywG/dYSyZN4j1MZWvvAFOk1ft+e9W697Z7UaZpM8wQ2NNERaz4s
+         9/uqc4CsyVOJFmqdpA2nTC5UYooLEfAKuuymBkFmRmJfcAqetAbJLuH7IpOLxtW
+         SnI35aUiCVOGXez2LaoW57KRDsO9pEBRKG3WfZE1Oqs6Y3MvPm8KNamrbo6neQ1
+         DcEuGqZDgNyhcczI24yaUo+ou70MvilAVw4+3zmzX1aESMN0eC4ulLmDGbvGm0c
+         Kz/51/WBtOwlW+72HOAyH+e4JUM/FCjeJIkScpFqDgP/Xz+ZQONNbEgDeMRmCSv
+         8S1xhpvBOE6jOYHkSD4/gTtkmS/w==; q=dns/txt; t=1765984198;
+         x=1766246998;
+DKIM-Signature: v=1; s=hs1-6890003; d=learn.deepgram.com;
+         i=@learn.deepgram.com;
+         h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id:list-unsubscribe-post;
+         a=rsa-sha256; c=relaxed/relaxed;
+         bh=ZhlnFoW8lQ6sofjQb3CWCs/S/GZ5kgrofEaujUljNuc=;
+         b=GS1/Nsi7HJGzZntZNbSVS1/rCDEJS1yr1jW1ydmq+ObOc1RwzmUv13ocbuoEA6
+         AA81HHABkzyZfA13QUbQA/DkvJIU1ETflXwiSsF3p0VlSp/n7auCR913U0rydhw
+         ivkyDkL0XI3WEDbUMvsvEDUWYRTaitYSszSejrrkRDOQg6ckqw7M2qa9szxredE
+         0lItvKxh88NK6vOJ51eKOKxltPbKtzwVV8U7BxtpVqRwlFcdp+ij+uNuqRbuV7y
+         ms4W49jIpGY4+0JtdpNDFhTkEbk8KJGxFB6+jgl8WrTJzWb0xio6nSBT4KHaxCG
+         PpI929q8g+cdDRZyQLbxTB/fLB6Q==; q=dns/txt; t=1765984198;
+         x=1766246998;
+Return-Path: <1axcktjydnuvd5vhnoaa922uha30j9c8p22tck-user=example.com@bf01x.hubspotemail.net>
+X-HS-Cid: 1axfrj31aqa0qlp4uhcbmk726bhcrxbptenbis
+List-Unsubscribe: <mailto:1axdjp6ddcaikn7dot95sufn6k6zzcmg3u285g-user=example.com@bf01x.hubspotemail.net?subject=unsubscribe>, <https://e.deepgram.com/hs/subscription-preferences/v2/unsubscribe-all?data=W2nXS-N30h-RWW4md2wj2KNL5VW3VWSh820XpkSW1V02bx38bFRGW3SMGZQ45HNL9W47LW95253kLyW1QmW474md5vbW1LjD5b32m7zDW2WJpT_32GQxbW3bbPKW3J-pwVW1SzbXJ2B368-W3-1Z9C1BfLB3W3SJrDg3jp2czW4rFxmB1Vcbb7W36wslp1N61G6W3QVCSB3M7Ny5W23ndl4213HJ_W3SB7r04hg8nzW3T6gtB4hF-FYW3R63SL45n621W3P5W1w3JQChCW2vzZ_62FJZ_3W41zBCJ2KGXHSW3K6bW-3g0nF-W2Tsj9N3LRG9KW3K46-F45H0mhW1Nkb442FHNmNW3QV64l2xHxchW1N4kzD3XGkhxW1NkHZr4fwDkrW32GPFm2CsZ6zW2szM2V4tqfxSW3XPQMd3z3PNGW3B_0-X1Vds1TW2RQCWC2MW9sFW346R1q47vGchW3NRTXP1_3w81W30zYYQ3R3c8YW20Z2xp3XLrdrW362wDW2B1TM1W43R0zL3zkv82W2B1VDN41q_D9W3z9xBB3SZ5pZW4cL3yj34GzKpW4tzCfm3dyn4vW3Vw-LM1Zs6_BW2RyxFj2WgyPTW43SLDL36d5f0W4hN89c2HX2KnW2FV6db1QrhgQW38f7w12Ppmd9W3LHjWy4r8h7PW34BSB62CwSXvW1XsklG2Hs1GYW2zvMYs2TxvNN0>
+Date: Wed, 17 Dec 2025 07:12:47 -0800
+From: Deepgram Marketing <marketing@learn.deepgram.com>
+Reply-To: marketing@deepgram.com
+To: user@example.com
+Message-ID: <1765984198159.18f22f5d-7ff4-4b69-9e25-450617f58edd@bf01x.hubspotemail.net>
+Subject: Live Today at 10 AM PT: Multi-Agent Voice AI
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="----=_Part_1831551_1044227324.1765984198308"
+Form-Sub: v=1; ip=none
+Precedence: bulk
+X-Report-Abuse-To: abuse@hubspot.com (see https://policy.hubspot.com/abuse-complaints)
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Feedback-ID: aeedym9:aigtbgde:aidf:HubSpot
+
+------=_Part_1831551_1044227324.1765984198308
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Build real-time agents with Deepgram=E2=80=99s Voice Agent API=E2=80=94join=
+ live Q&A.
+
+2512-MultiAgent-Email-Header-600x450-1 (https://e.deepgram.com/e3t/Ctc/5D+1=
+13/cQMRG04/VVyvLJ3qv3ykN3Tpb6Dd1fvKW842MfZ5H9mg6MyCDnl3prCCW95jsWP6lZ3lHW5c=
+tmct4lTml3W627TNq3016FLW30023t6yRpM2W4mfKSM97k3vvW5S3jxd1jh_svW4KcsG17LxKMk=
+T_qR61xYPxZW3M9WGb7M3nFPN5m0dTDnGV8cW8hv_Fr7vGrRbVXhDw38kz_M9W43tXSK4xvWsgW=
+4qHFJY3PlRJQW1VJxCs1c-lMRW7c0Tgb9gFbYcVrH4qK8jMGJNW6-H5ss2MtsnPW7YLH6n1zYbb=
+7W7CwQSC48bJQxTsmy71HTJ8kW3SZLDY1tpfsBN7mt209JpwhJW1F_pqt14jV0SW7JKL9K1MSDS=
+3N4l3skZ2RMr4W6sMChj4lGyR_W93mK1Y6Qz1T-W1YdZpX6vClFFW5ccWzR5FdkC3W6H-Xvl2yS=
+Vsdf7RydQK04 )
+
+Hi Daniel,
+
+It=E2=80=99s almost time! Join over 1,500 registrants today, Dec 17 at 10 A=
+M PT / 1 PM ET for a live, technical session on orchestrating Multi-Agent V=
+oice AI Systems.
+
+You=E2=80=99ll learn how to:
+
+- Design orchestration layers that route user intent
+- Maintain context across multi-agent handoffs
+- Build flexible real-time agents with Deepgram=E2=80=99s Voice Agent API
+
+Don=E2=80=99t miss this live, hands-on session with Deepgram=E2=80=99s AI e=
+xperts.
+
+=F0=9F=91=89 Reserve your spot now (https://e.deepgram.com/e3t/Ctc/5D+113/c=
+QMRG04/VVyvLJ3qv3ykN3Tpb6Dd1fvKW842MfZ5H9mg6MyCDnl3prCCW95jsWP6lZ3lHW5ctmct=
+4lTml3W627TNq3016FLW30023t6yRpM2W4mfKSM97k3vvW5S3jxd1jh_svW4KcsG17LxKMkT_qR=
+61xYPxZW3M9WGb7M3nFPN5m0dTDnGV8cW8hv_Fr7vGrRbVXhDw38kz_M9W43tXSK4xvWsgW4qHF=
+JY3PlRJQW1VJxCs1c-lMRW7c0Tgb9gFbYcVrH4qK8jMGJNW6-H5ss2MtsnPW7YLH6n1zYbb7W7C=
+wQSC48bJQxTsmy71HTJ8kW3SZLDY1tpfsBN7mt209JpwhJW1F_pqt14jV0SW7JKL9K1MSDS3N4l=
+3skZ2RMr4W6sMChj4lGyR_W93mK1Y6Qz1T-W1YdZpX6vClFFW5ccWzR5FdkC3W6H-Xvl2ySVsdf=
+7RydQK04 )
+
+Live on: Wednesday, Dec 17th 10AM PT | 1 PM ET
+
+Register Now
+(https://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VVyvLJ3qv3ykN3Tpb6Dd1fvKW842=
+MfZ5H9mg6MyCDnl3prCCW95jsWP6lZ3lHW5ctmct4lTml3W627TNq3016FLW30023t6yRpM2W4m=
+fKSM97k3vvW5S3jxd1jh_svW4KcsG17LxKMkT_qR61xYPxZW3M9WGb7M3nFPN5m0dTDnGV8cW8h=
+v_Fr7vGrRbVXhDw38kz_M9W43tXSK4xvWsgW4qHFJY3PlRJQW1VJxCs1c-lMRW7c0Tgb9gFbYcV=
+rH4qK8jMGJNW6-H5ss2MtsnPW7YLH6n1zYbb7W7CwQSC48bJQxTsmy71HTJ8kW3SZLDY1tpfsBN=
+7mt209JpwhJW1F_pqt14jV0SW7JKL9K1MSDS3N4l3skZ2RMr4W6sMChj4lGyR_W93mK1Y6Qz1T-=
+W1YdZpX6vClFFW5ccWzR5FdkC3W6H-Xvl2ySVsdf7RydQK04 )
+
+logo-footer (https://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VVyvLJ3qv3ykN3Tp=
+b6Dd1fvKW842MfZ5H9mg6MyCDms3prCCW7lCdLW6lZ3p0W2TDGL71knPGbVK1BNh35C7jlW752F=
+9p708spHW6gfVR991NVjjW5zbBkZ395pSlW1zxy8k5PkXfRN1WjbzWTmv4kW1LQpMm18QgS2W86=
+8m526-k0gVW8fmsX82T6bbNW8y1PsW5l0RFrW1S4Dlx4t4qC9V37Gmq2_F32cW5ff5P11bfMBrW=
+5wFkRm4Dh5NTW7NDm6c4CPCrTW5W_sMG7SgnrvW53-qf46KvfwfW55Xp8Q2dqh_6W8mzL4j4WvV=
+2LMCn6XLxzyRfN1hwHT3ks8PhW49lChK2NPPBwN6sD-NP_k9Pbf6DLsYx04 )
+
+The Voice AI platform for business use cases
+
+About (https://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VVyvLJ3qv3ykN3Tpb6Dd1f=
+vKW842MfZ5H9mg6MyCDms3prCCW7lCdLW6lZ3pbW1MQBdr4cYX3MW6xwcQ33H6Ng7W2FZZyl5Pj=
+zcSW3PXgGd8glzDZV6dBjB3S59B7W2nkxN03snPRwW7j3Rjp17CtfqW4nlcRW94GpqwW5xnBn11=
+BMT61W7VVmRh6nL7KbW7KJ-lV5T2D0JW6K22gP5SwD0WW8lQDCQ7NwrL-W3v__Jz7G6sBzW1Z_f=
+H15x9R6VW6P1wSq4H-zbMV_zK1d8DCGvyW8T2BSh7JqQcgV92lSP2pZ_18W1T741y2TGTVNW6wX=
+-_k3rhJdtW4M1jrq3VFBS6W6LZLxN2GrvGXW42bqr714LDfSf1lls6R04 )   |  Pricing (h=
+ttps://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VVyvLJ3qv3ykN3Tpb6Dd1fvKW842Mf=
+Z5H9mg6MyCDmM3prCCW7Y8-PT6lZ3m_W1-Rq7Q25FlzBW20FRHf5_RVvjW5M_zfz2yG6yZW2Cbs=
+vV53d_tTW2g94NK8vy3hPVf348z2514RrW655gHm7zFxHnW7w9w7M1fW0t7N4WVWh3rb05jW2Tv=
+zlG6dd8LfW1hjG3H6JMs5HW66RHSB2fPKZYN1-RtkH9pN6qW2L6fQS5MKP5bW7sSTcw4M8qhDW5=
+lHWyp8c40jqW7khlrS350SDGW4CKl_86pKhSKW2Ksws05jH04FW4VKLg32jJvnTW98SdfL7mL3T=
+1W2mJLJv9csWF-N8XzSZc42hnXW8jT82z1J_ygFW6TJ6jV59SHxGW22WBDk4SX7dLf58DbBq04 =
+)   |  Get Started (https://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VVyvLJ3qv=
+3ykN3Tpb6Dd1fvKW842MfZ5H9mg6MyCDmM3prCCW7Y8-PT6lZ3mfW7qS2-W26DmG5W4f_gd-1GG=
+qQ1W8-gNmN6Rbxr-W2CcTJz1PRCvyW95_b8S1Nx3vrW3Xx3cx5DwSRfN2vgVcy3Y2DNW36yGdV2=
+JLQsCW692Jnw8Zd-sTN7blM7wFqflPVRv5jd8RTP9wW28slsq83DyvTW7vWk8P5kw-2kN5J5x8q=
+9c733W5T27y81ydVYGW8nKV5X7wC1JzW5f1l-P71yfTPW15fBc41xPGGHN6PxZ1pmsYSpW6w27H=
+m4Qvp2TW4rPT0X2M85L0N8QWKYPc4pSLW5wwQlF11DNqlW87snRl23gCmRW1VzSBY2dVlnXW7W8=
+n_F99bww0f3mm0x004 )
+
+LinkedIn (https://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VVyvLJ3qv3ykN3Tpb6D=
+d1fvKW842MfZ5H9mg6MyCDmM3prCCW7Y8-PT6lZ3mdW4PHnRC63gmP2N6FHPGcbj4_ZW5DPrL31=
+WQ0GmW5qZ4sW6XlT6LW5CdK7074gzpkVT7_mt7qBBDFW1GJ__9607TMVN8HX9HXBp20hVsmhZw3=
+ZXQmTW7RJq353Npd3wW8S0yR16_2BJqW8-4Ks36gl8jfN1GgRVB36m5nW895jH77mwzqGW2c7Nh=
+r9kbBL5W4rG87Y6dKxb5W5gkslg9fkyPBW3Mtxw23rmw8VW2GZ4gq6K4-s9N5JZTgcpkjmQW6vl=
+-B473P44mW2yYJjN51_t5jW2LsDMz2h7vvmW3KfbSk3dgmH0W2T1RWz2R-XZTW7-2XL76NqNM_f=
+2rV4q-04 )
+
+YouTube (https://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VVyvLJ3qv3ykN3Tpb6Dd=
+1fvKW842MfZ5H9mg6MyCDnl3prCCW95jsWP6lZ3lqW1HKBNv5qfSFJW1Kcprw3vQMqtW2wwp5j8=
+425kjW5T8Sdy7nNCs3W7469Xp6SgqDGVKTBN84K2-DLW2cw82S8z1fw9Mr9x-kKDgVqW1G5WdF8=
+k4xl9W2-2h782045XWW28VwQX8tN9w4W6DGgSn9jl8wmW2mDtrd3z_kFvW4jqGTp4qHZ_tW1xfk=
+815HBtd2W2Xftd98pj0vWW3TQ9vq68wpDTW3h7Lcf69_NxXN8JqqMFm1r3kVh8LNd54-YyFW89D=
+CSB77F48QW89WyjV38SSQVW37vyzj2v9CPBW4TRjMP5g15PsW4rYswT5J1FpsW6knysm3LhjTyW=
+2Dzxbm7yG9_-W3dNxmf9bjJk2N11zptjDdW3VW8HVBNN1bVbpxf70tp8H04 )
+
+X (https://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VVyvLJ3qv3ykN3Tpb6Dd1fvKW8=
+42MfZ5H9mg6MyCDmM3prCCW7Y8-PT6lZ3pkW79gbrq96xBjGVTsFmn284fsZW78_DY57mtbp_V7=
+s3MC6ZVh1kW688jvT1kr2RBW7T49Wc5vCMDYN7RSqtZwWhwLV_ntBp1HTVzdW3d7xLc2BMltyW8=
+76b7R8fDr69W6Kpc4x2hxbLlW7C0MXv6YSh_kW6RcqWG8R2hy5W4D-8-S68RC39W3JhVNx2-wd9=
+vW4sd-F16b67sqW1dbPTX56vmtVW1jXfXC7JdWnMW8BG6WV2hWvx2W3tLVMF6VzhRLW4XSqLW1S=
+7QF7Vzv8F933-_pJW77qXVH36F9VrW840dw787NyqgW8TmdZL2XkDRDW6B5pl124s8nXf7b3lp2=
+04 )
+
+Facebook (https://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VVyvLJ3qv3ykN3Tpb6D=
+d1fvKW842MfZ5H9mg6MyCDmM3prCCW7Y8-PT6lZ3lRW2Bn8B333wMfPW7Gczhp5n0M1NN54V-23=
+jgLcQW5NfCtc87zjFWV2l3-91F1M5rW2ypP2H1H0Fy5N6dPCPhy5bvfVsFkW89kh4gnW31hQk06=
+_YVF9W75_wb77Hzwq9W44Pdv05yGcLKW2ngV-N98TP7mW6qMlRR3tpFctW4NTgM_1gwYbVW4VJl=
+5h4MGmhCW41PjpL51v5CHW4YcF2h8svj2LW2WF9WN82Zn3CN3gfBzfFwvYZW7qXGpT4X53rLN1s=
+mB2yPH3-4W7SWGdk566VZJW5V7Fqr90h5PvW3nGfKn94309LW6gvryQ8Pdfx2W874Y8z5XHbw9f=
+1cnXZP04 )
+
+Deepgram, 548 Market St., San Francisco, CA, United States
+
+Unsubscribe (https://e.deepgram.com/hs/preferences-center/en/direct?data=3D=
+W2nXS-N30h-RcW2p2zGl2Rrf7nW2qRJpG3zhQ-HW30HkbQ3XzjxbW2HHCv51XlY8yW45nxwB3W4=
+NwTW2MSHlw49vShlW3BYtrl1Sl1g9W2p9Dvx3XGmcsW2HpBnM2FSwwvW3QFF9r2MFrVpW41t8Ff=
+3NRRyTW2MqS1p3b2SCfW4fPGpw2Ymk4-W32pCdK43GkMPW4tyj-_3zgxKZW4t7Gxz4hGQ3mW3_Y=
+hGc41Q3vvW2Rzny62PD16PW4hq2Pp2-KFGcW252Tg32zFKvZW2RBD-94kcts3W4fkhRM34z-kRW=
+30n_kR2vY6lwW34yjlh3H7mwVW2B1Zqr3QKszzW1Vp8k_3d8TSWW3VJ9Ft43SlFmW2qz5cB2Fwd=
+1CW2PmNgp3_sZkWW1X0bfT49l2qcW1LxDVV2nR09VW2MVppF3ZV910W3CbJ8_3bBGVKW2WnpXg1=
+SsPSqW4mrfXD1BtkrYW2HsyH83BYXy-W4hGRtN4mpGPsW1NfwYW1Q6br4W32DHZJ367skYW3M4s=
+Jx1S37-9W4p9hrn4th6cSW4htMJm43rHvdW2p0vJJ2p7WZBW30bcrj3W1-35W4ry6h84rhNJsW2=
+CZ4mM3_tnHBW3bC1nm2YFJ3xW3zkvpB2zQTYSW4r6fMX3ghPcCW2-zQTK1N6trnW38gnY93QLLd=
+QW1XptF93_BxmJW1Bxh7F3dgQyXW385d1X3dkffGf2HZxGG04&_hsenc=3Dp2ANqtz-8hgoSkXD=
+pmOJoKvGj37gCbQ-MAkUzALgBEVt-URkfhS1SaWA7mT6HLYnGsA4dUwgiWxR9YXbYDnALY-pxOB=
+6juUEmTBA&_hsmi=3D394764304 )
+Manage preferences (https://e.deepgram.com/hs/preferences-center/en/page?da=
+ta=3DW2nXS-N30h-RcW2p2zGl2Rrf7nW2qRJpG3zhQ-HW30HkbQ3XzjxbW2HHCv51XlY8yW45nx=
+wB3W4NwTW2MSHlw49vShlW3BYtrl1Sl1g9W2p9Dvx3XGmcsW2HpBnM2FSwwvW3QFF9r2MFrVpW4=
+1t8Ff3NRRyTW2MqS1p3b2SCfW4fPGpw2Ymk4-W32pCdK43GkMPW4tyj-_3zgxKZW4t7Gxz4hGQ3=
+mW3_YhGc41Q3vvW2Rzny62PD16PW4hq2Pp2-KFGcW252Tg32zFKvZW2RBD-94kcts3W4fkhRM34=
+z-kRW30n_kR2vY6lwW34yjlh3H7mwVW2B1Zqr3QKszzW1Vp8k_3d8TSWW3VJ9Ft43SlFmW2qz5c=
+B2Fwd1CW2PmNgp3_sZkWW1X0bfT49l2qcW1LxDVV2nR09VW2MVppF3ZV910W3CbJ8_3bBGVKW2W=
+npXg1SsPSqW4mrfXD1BtkrYW2HsyH83BYXy-W4hGRtN4mpGPsW1NfwYW1Q6br4W32DHZJ367skY=
+W3M4sJx1S37-9W4p9hrn4th6cSW4htMJm43rHvdW2p0vJJ2p7WZBW30bcrj3W1-35W4ry6h84rh=
+NJsW2CZ4mM3_tnHBW3bC1nm2YFJ3xW3zkvpB2zQTYSW4r6fMX3ghPcCW2-zQTK1N6trnW38gnY9=
+3QLLdQW1XptF93_BxmJW1Bxh7F3dgQyXW385d1X3dkffGf2HZxGG04&_hsenc=3Dp2ANqtz-8hg=
+oSkXDpmOJoKvGj37gCbQ-MAkUzALgBEVt-URkfhS1SaWA7mT6HLYnGsA4dUwgiWxR9YXbYDnALY=
+-pxOB6juUEmTBA&_hsmi=3D394764304 )
+------=_Part_1831551_1044227324.1765984198308
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www=
+.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns=3D"http://www.w3=
+.org/1999/xhtml" xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:=
+v=3D"urn:schemas-microsoft-com:vml" lang=3D"en"><head>
+    <title>Live Today at 10 AM PT: Multi-Agent Voice AI</title>
+    <meta property=3D"og:title" content=3D"Live Today at 10 AM PT: Multi-Ag=
+ent Voice AI">
+    <meta name=3D"twitter:title" content=3D"Live Today at 10 AM PT: Multi-A=
+gent Voice AI">
+   =20
+   =20
+   =20
+<meta name=3D"x-apple-disable-message-reformatting">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0">
+    <!--[if gte mso 9]>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+    <w:WordDocument xmlns:w=3D"urn:schemas-microsoft-com:office:word">
+      <w:DontUseAdvancedTypographyReadingMail/>
+    </w:WordDocument>
+  </xml>
+ =20
+  <style>
+    ul > li {
+      text-indent: -1em;
+    }
+  </style>
+<![endif]-->
+<!--[if mso]>
+<style type=3D"text/css">
+ body, td {font-family: Arial, Helvetica, sans-serif;}
+</style>
+<![endif]-->
+<!--[if mso | IE]>
+  <style type=3D"text/css">
+    .hse-column-container { border: none !important; padding: 0 !important;=
+ }
+  </style>
+<![endif]-->
+   =20
+     =20
+ =20
+ =20
+   =20
+  <meta name=3D"generator" content=3D"HubSpot"><meta property=3D"og:url" co=
+ntent=3D"https://e.deepgram.com/-temporary-slug-5e2b3f06-5a1f-49ec-aa0d-316=
+437aee101"><meta name=3D"robots" content=3D"noindex,follow"><!--[if !((mso)=
+|(IE))]><!-- --><style type=3D"text/css">@media only screen and (max-width:=
+639px){img.stretch-on-mobile,.hs_rss_email_entries_table img,.hs-stretch-ct=
+a .hs-cta-img{height:auto !important;width:100% !important}
+.display_block_on_small_screens{display:block}.hs_padded{padding-left:20px =
+!important;padding-right:20px !important}
+.hs-hm,table.hs-hm{display:none}.hs-hd{display:block !important}table.hs-hd=
+{display:table !important}
+}@media only screen and (max-width:639px){.hse-border-m{border-left:1px sol=
+id #cbd6e2 !important;border-right:1px solid #cbd6e2 !important;box-sizing:=
+border-box}
+.hse-border-bottom-m{border-bottom:1px solid #cbd6e2 !important}.hse-border=
+-top-m{border-top:1px solid #cbd6e2 !important}
+.hse-border-top-hm{border-top:none !important}.hse-border-bottom-hm{border-=
+bottom:none !important}
+}.moz-text-html .hse-column-container{max-width:600px !important;width:600p=
+x !important}
+.moz-text-html .hse-column{display:table-cell;vertical-align:top}.moz-text-=
+html .hse-section .hse-size-12{max-width:600px !important;width:600px !impo=
+rtant}
+@media only screen and (min-width:640px){.hse-column-container{max-width:60=
+0px !important;width:600px !important}
+.hse-column{display:table-cell;vertical-align:top}.hse-section .hse-size-12=
+{max-width:600px !important;width:600px !important}
+}@media only screen and (max-width:639px){.hse-body-wrapper-td{padding-top:=
+20px !important}
+#section-2 .hse-column-container{background-color:#000 !important} }@media =
+only screen and (max-width:639px){ #section-6 .hse-column-container{padding=
+-top:40px !important;padding-bottom:0px !important}
+#section-6 .hse-column-container{background-color:#0b0b0c !important} }@med=
+ia screen and (max-width:639px){.social-network-cell{display:inline-block}
+}@media only screen and (max-width:639px){ #section-7 .hse-column-container=
+{padding-top:0px !important;padding-bottom:0px !important}
+#section-7 .hse-column-container{background-color:#0b0b0c !important} }@med=
+ia only screen and (max-width:639px){.hse-body-wrapper-td{padding-bottom:20=
+px !important}
+#section-8 .hse-column-container{padding-top:20px !important;padding-bottom=
+:0px !important;background-color:transparent !important}
+#section-8 .hse-column-container{background-color:transparent !important} }=
+</style><!--<![endif]--><style type=3D"text/css">#hs_body #hs_cos_wrapper_m=
+ain a[x-apple-data-detectors]{color:inherit !important;text-decoration:none=
+ !important;font-size:inherit !important;font-family:inherit !important;fon=
+t-weight:inherit !important;line-height:inherit !important}
+a{text-decoration:underline}p{margin:0}body{-ms-text-size-adjust:100%;-webk=
+it-text-size-adjust:100%;-webkit-font-smoothing:antialiased;moz-osx-font-sm=
+oothing:grayscale}
+table{border-spacing:0;mso-table-lspace:0;mso-table-rspace:0}table,td{borde=
+r-collapse:collapse}
+img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rul=
+e:exactly}
+.ShadowHTML p,.sh-modified-inline p{margin:0}html,body,.hse-body-background=
+{height:100% !important}</style></head>
+  <body id=3D"hs_body" bgcolor=3D"#000000" style=3D"margin:0 !important; pa=
+dding:0 !important; font-family:Arial, sans-serif; font-size:16px; color:#e=
+eeeee; word-break:break-word">
+    <table lang=3D"en">
+  <tbody><tr><td style=3D"font-family:Arial, sans-serif; word-break:break-w=
+ord; display:none; font-size:1px; color:transparent; line-height:1px; max-h=
+eight:0px; max-width:0px; opacity:0; overflow:hidden">
+  <div id=3D"preview_text">
+    Build real-time agents with Deepgram=E2=80=99s Voice Agent API=E2=80=94=
+join live Q&amp;A.
+  </div>
+  </td>
+</tr></tbody></table>
+   =20
+<!--[if gte mso 9]>
+<v:background xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"t">
+    <v:fill type=3D"tile"src=3D"https://6890003.fs1.hubspotusercontent-na1.=
+net/hubfs/6890003/back-4.jpg" color=3D"#000000"/>
+</v:background>
+<![endif]-->
+    <div class=3D"hse-body-background" lang=3D"en" style=3D"background-colo=
+r:#000000" bgcolor=3D"#000000">
+      <table role=3D"presentation" class=3D"hse-body-wrapper-table" cellpad=
+ding=3D"0" cellspacing=3D"0" style=3D"margin:0; padding:0; width:100% !impo=
+rtant; min-width:320px !important; height:100% !important; background-image=
+:url(https://e.deepgram.com/hubfs/back-4.jpg); background-repeat:repeat; ba=
+ckground-position:top left" width=3D"100%" height=3D"100%">
+        <tbody><tr>
+          <td class=3D"hse-body-wrapper-td" valign=3D"top" style=3D"font-fa=
+mily:Arial, sans-serif; font-size:16px; color:#eeeeee; word-break:break-wor=
+d; padding-top:20px; padding-bottom:20px">
+            <div id=3D"hs_cos_wrapper_main" class=3D"hs_cos_wrapper hs_cos_=
+wrapper_widget hs_cos_wrapper_type_dnd_area" style=3D"color: inherit; font-=
+size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" d=
+ata-hs-cos-type=3D"dnd_area">  <div id=3D"section-2" class=3D"hse-section h=
+se-section-first" style=3D"padding-left:10px; padding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#000000; padding-bottom:22px" bgc=
+olor=3D"#000000">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#000000">
+      <tr style=3D"background-color:#000000;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;padding-bottom:22px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-2-0" class=3D"hse-column hse-size-12">
+  <div id=3D"hs_cos_wrapper_module_17648097864011" class=3D"hs_cos_wrapper =
+hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; =
+font-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widg=
+et" data-hs-cos-type=3D"module"><table class=3D"hse-image-wrapper" role=3D"=
+presentation" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0">
+  <tbody>
+    <tr>
+      <td align=3D"center" valign=3D"top" style=3D"font-family:Arial, sans-=
+serif; color:#eeeeee; word-break:break-word; text-align:center; padding:0px=
+; font-size:0px">
+        <a href=3D"https://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VVyvLJ3qv3=
+ykN3Tpb6Dd1fvKW842MfZ5H9mg6MyCDlg5nR3bW50kH_H6lZ3mBW4vQx1B3QHRsGW2_5fm54rxw=
+sBW5zyw4k8_D53yW40LvZX4G7D3XW1fjfkk56hb4tW7vYQ1b1KT-cDW3rPvCr8GHl2kW4-WYxG2=
+9N6sSW9c3-kL2LYnvjM4jqqfMFf-pVN0Vf41qYG-lW5RxmFY5Yr8mwN2rff5VSM643W5h2T0G8t=
+W9ZKW1_sgbS701Sh9VzwVkf3Sl1FyW8kpBhZ4BvZylW1VRM9Q8KHZ-vW4l6pP52q84gPW47YTnw=
+96jr2sW3gdJj644jtGkN2cy0BtyLxrgMcCrBLh4cB_W3fvm8T3FxsGdVTZrHR6_q54jW6CzV2-7=
+cs8qTW3wSCnB1rWB7RV3y6-81czY8MN4B7LWrbNFQLW6tyLWX6Bs4RlW1nWLCZ7S_DjrW7m5Bh4=
+6jPny8f4K0G6W04" target=3D"_blank" style=3D"color:#00a4bd" data-hs-link-id=
+=3D"0" data-hs-link-id-v2=3D"A/vfauY5">
+        <img alt=3D"2512-MultiAgent-Email-Header-600x450-1" src=3D"https://=
+e.deepgram.com/hs-fs/hubfs/2512-MultiAgent-Email-Header-600x450-1.jpg?width=
+=3D1200&amp;upscale=3Dtrue&amp;name=3D2512-MultiAgent-Email-Header-600x450-=
+1.jpg" style=3D"outline:none; text-decoration:none; border:none; max-width:=
+100%; font-size:16px" width=3D"600" align=3D"middle">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+  <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" class=3D"" style=3D""><tbody><tr><td class=3D"hs_padded" style=3D"fo=
+nt-family:Arial, sans-serif; font-size:16px; color:#eeeeee; word-break:brea=
+k-word; padding:0px 20px 20px 30px"><div id=3D"hs_cos_wrapper_module-2-0-0"=
+ class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" =
+style=3D"color: inherit; font-size: inherit; line-height: inherit;" data-hs=
+-cos-general-type=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_cos_=
+wrapper_module-2-0-0_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos=
+_wrapper_type_rich_text" style=3D"color: inherit; font-size: inherit; line-=
+height: inherit;" data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"r=
+ich_text"><pre style=3D"white-space:pre-wrap"></pre>
+<p style=3D"line-height:175%; margin-bottom:10px"><span style=3D"color: #ee=
+eeee;"><span style=3D"font-size: 18px; font-weight: bold;">Hi Daniel,</span=
+></span></p>
+<p style=3D"line-height:175%">It=E2=80=99s almost time! Join over 1,500 reg=
+istrants&nbsp;<strong>today, Dec 17 at 10 AM PT / 1 PM ET</strong> for a li=
+ve, technical session on <strong>orchestrating Multi-Agent Voice AI Systems=
+.</strong></p>
+<p style=3D"line-height:175%">&nbsp;</p>
+<p style=3D"line-height:175%">You=E2=80=99ll learn how to:</p>
+<ul style=3D"line-height:175%">
+<li aria-level=3D"1">Design orchestration layers that route user intent</li=
+>
+<li aria-level=3D"1">Maintain context across multi-agent handoffs</li>
+<li aria-level=3D"1">Build flexible real-time agents with Deepgram=E2=80=99=
+s Voice Agent API</li>
+</ul>
+<p style=3D"line-height:175%">Don=E2=80=99t miss this live, hands-on sessio=
+n with Deepgram=E2=80=99s AI experts.</p>
+<p style=3D"line-height:175%"><span style=3D"color: #ffffff;">=F0=9F=91=89 =
+<a href=3D"https://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VVyvLJ3qv3ykN3Tpb6=
+Dd1fvKW842MfZ5H9mg6MyCDlg5nR3bW50kH_H6lZ3pwW6HNKQ23GrQFkVqVwCF572Z4DW795-Q8=
+3w0d6MN4hwcMBYKTG5W89l7LR4_wcbkW7BgH584v-XQGW1FgVVx628zkWVgKvjH4x0qX7W2zsPc=
+f7fQ-qHW3f75mq7m-Bz9N2J5FrFv7SwqN7f7krTRSx5vW9d30K15bNGmmW3vrCLc98Nvh9V8pvr=
+Q8mZ1qRW7F7mGY92m3vcVxr94Z454rssW1Fm2pF7ndw-CW7933c18zHbLBW40wkPX49S67NN3Bl=
+FNjswRf6W2sd9x41DVxWQW430Y1462kjZ0W6wtn6C33NyxtW4wpjL93lbHpQVF2LnC9h4SHCW7c=
+RwKY2fJMw0VSntL44PZ0gJW7xgycy742yLqW4nmD8k6DVdHDW6f8V8N2-10GxW2C8zsQ6X9xYFf=
+2QW-wg04" rel=3D"noopener" style=3D"color:#79affa" data-hs-link-id=3D"1" da=
+ta-hs-link-id-v2=3D"taZOoBQ3" target=3D"_blank">Reserve your spot now</a></=
+span></p>
+<p style=3D"line-height:175%">&nbsp;</p></div></div></td></tr></tbody></tab=
+le>
+  <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" class=3D"" style=3D""><tbody><tr><td class=3D"hs_padded" style=3D"fo=
+nt-family:Arial, sans-serif; font-size:16px; color:#eeeeee; word-break:brea=
+k-word; padding:20px 20px 0px 30px"><div id=3D"hs_cos_wrapper_module-5-0-0"=
+ class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" =
+style=3D"color: inherit; font-size: inherit; line-height: inherit;" data-hs=
+-cos-general-type=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_cos_=
+wrapper_module-5-0-0_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos=
+_wrapper_type_rich_text" style=3D"color: inherit; font-size: inherit; line-=
+height: inherit;" data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"r=
+ich_text"><h2 style=3D"margin:0; line-height:125%; font-size:16px; text-ali=
+gn:center" align=3D"center"><span style=3D"color: #ceced2;"><span style=3D"=
+font-weight: bold;">Live on:</span> Wednesday, Dec 17th 10AM PT | 1 PM ET&n=
+bsp;</span></h2>
+<ul style=3D"line-height:175%"></ul></div></div></td></tr></tbody></table>
+  <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" class=3D"" style=3D""><tbody><tr><td class=3D"hs_padded" style=3D"fo=
+nt-family:Arial, sans-serif; font-size:16px; color:#eeeeee; word-break:brea=
+k-word; padding:20px 20px 20px 30px"><div id=3D"hs_cos_wrapper_module-2-0-2=
+" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module"=
+ style=3D"color: inherit; font-size: inherit; line-height: inherit;" data-h=
+s-cos-general-type=3D"widget" data-hs-cos-type=3D"module"><table align=3D"c=
+enter" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentatio=
+n" style=3D"border-collapse:separate!important">
+    <tbody><tr>
+      <td align=3D"center" valign=3D"middle" bgcolor=3D"#FFFFFF" style=3D"f=
+ont-family:Arial, sans-serif; font-size:16px; color:#eeeeee; word-break:bre=
+ak-word; border-radius:2px; cursor:auto; background-color:#FFFFFF; mso-padd=
+ing-alt:12px 50px">
+        <a href=3D"https://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VVyvLJ3qv3=
+ykN3Tpb6Dd1fvKW842MfZ5H9mg6MyCDlg5nR3bW50kH_H6lZ3ptW4s3WrG4t2hhDN3qrPyySbs9=
+vW1FkY5s2x78xqW2b0sDG1R8W_nW8bSvvH5vHkk8W4_KgYX75z7pZW1d6TqJ3R0vyVW3Hq2764C=
+QW_LW2B7mcc61qLKLW2GYWL290p8gVW4TNSVJ2BB1bwW3D-3bm9cPWJXVNXsGN6q2SdDW95-sDX=
+7SYWsMW2dCfQ_7wx4PdW1xW5TH2BqFfWW7NDFSJ3FyKbFW2xgXvk6prnxNN19Jn5kglCGxW1s5k=
+971Xnn4rW7K3kCH8drpFSVWcM4K5PsGJZW6q41Y-4zG4mkN2HK3PWRryNKVFJxbh3cvL1PW2jsQ=
+7484730wN4pYwDmNvHKmW1Vt6l22yLW2rVmbnqP2zMGGhW1dv_ZX7mZnZLW7HjV6V7t29RhW1hq=
+D_Z4Q7NSDf1pyYgx04" target=3D"_blank" style=3D"color:#00a4bd; font-size:16p=
+x; font-family:Arial, sans-serif; Margin:0; text-transform:none; text-decor=
+ation:none; padding:12px 50px; display:block" data-hs-link-id=3D"2" data-hs=
+-link-id-v2=3D"uoJ95w9L">
+          <strong style=3D"color:#000000;font-weight:bold;text-decoration:n=
+one;font-style:normal;">Register Now</strong>
+        </a>
+      </td>
+    </tr>
+  </tbody></table></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section_1760388248134" class=3D"hse-section" style=3D"padding-=
+left:10px; padding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#000000" bgcolor=3D"#000000">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#000000">
+      <tr style=3D"background-color:#000000;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column_1760388248134_0" class=3D"hse-column hse-size-12">
+    <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" class=3D"" style=3D""><tbody><tr><td class=3D"hs_padded" style=3D=
+"font-family:Arial, sans-serif; font-size:16px; color:#eeeeee; word-break:b=
+reak-word; padding:10px 20px"><div id=3D"hs_cos_wrapper_module_176038859656=
+54" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_modul=
+e" style=3D"color: inherit; font-size: inherit; line-height: inherit;" data=
+-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"module"><table role=3D"=
+none" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"vertical-al=
+ign:top" width=3D"100%">
+  <tbody><tr>
+    <td align=3D"center" style=3D"font-family:Arial, sans-serif; color:#eee=
+eee; font-size:0; word-break:break-word">
+      <p style=3D"font-size:1px;border-top:1px solid #FAFAFA;width:80%;marg=
+in:0 auto;"></p>
+      <!--[if mso]>
+        <table role=3D"none" align=3D"center" border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" style=3D"font-size:1px;border-top:1px solid #FAFAFA;wid=
+th:448px;">
+          <tr>
+            <td style=3D"height:0;line-height:0">&nbsp;</td>
+          </tr>
+        </table>
+      <![endif]-->
+    </td>
+  </tr>
+</tbody></table></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section-6" class=3D"hse-section" style=3D"padding-left:10px; p=
+adding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#0b0b0c; padding-top:40px" bgcolo=
+r=3D"#0b0b0c">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#0b0b0c">
+      <tr style=3D"background-color:#0b0b0c;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;padding-top:40px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-6-0" class=3D"hse-column hse-size-12">
+  <div id=3D"hs_cos_wrapper_module-6-0-0" class=3D"hs_cos_wrapper hs_cos_wr=
+apper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; font-size=
+: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-=
+hs-cos-type=3D"module"><table class=3D"hse-image-wrapper" role=3D"presentat=
+ion" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0">
+  <tbody>
+    <tr>
+      <td class=3D"hs_padded" align=3D"center" valign=3D"top" style=3D"font=
+-family:Arial, sans-serif; color:#eeeeee; word-break:break-word; text-align=
+:center; padding:0px 20px; font-size:0px">
+        <a href=3D"https://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VVyvLJ3qv3=
+ykN3Tpb6Dd1fvKW842MfZ5H9mg6MyCDmM3qgz0W7Y8-PT6lZ3pSW6QWkyT62l6xwW7ps2sX4HkK=
+5FW1rK6m389RqXQW70Wpfj47QbYGW79GnG-8mq8NxVsK22R8NdRRfW38mKPK6rm_4hW4Y7SQH3h=
+rFQ-W993f7D4rZfjpW7lkw1F8bwdSVW2MPy807mczBnVRvcFX2H6cJzW1wBFKW3Pv8-XW9lXChr=
+3d6__jW556Dl53K52QmW7nG1Jd8mLlGdV41j8L3wVhRxW1C6fSL8vjt_lW2h5VlW5fZ3b1W50BD=
+M17HPV2mW92cCp921CnxLW2b4Vv92zQRQ8V2mmgs4H6M77W1gzSyg8gQkykW147bNR4TVGWzW7C=
+6WXX3yGp3yf3Sr20C04" target=3D"_blank" style=3D"color:#00a4bd" data-hs-link=
+-id=3D"0" data-hs-link-id-v2=3D"7mK7uL8l">
+        <img alt=3D"logo-footer" src=3D"https://e.deepgram.com/hs-fs/hubfs/=
+logo-footer.png?width=3D400&amp;upscale=3Dtrue&amp;name=3Dlogo-footer.png" =
+style=3D"outline:none; text-decoration:none; border:none; max-width:100%; f=
+ont-size:16px" width=3D"200" align=3D"middle">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+  <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" class=3D"" style=3D""><tbody><tr><td class=3D"hs_padded" style=3D"fo=
+nt-family:Arial, sans-serif; font-size:16px; color:#eeeeee; word-break:brea=
+k-word; padding:5px 20px 0px"><div id=3D"hs_cos_wrapper_module-6-0-1" class=
+=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=
+=3D"color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-=
+general-type=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_cos_wrapp=
+er_module-6-0-1_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrap=
+per_type_rich_text" style=3D"color: inherit; font-size: inherit; line-heigh=
+t: inherit;" data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"rich_t=
+ext"><p style=3D"font-size:14px; line-height:175%; text-align:center" align=
+=3D"center">The Voice AI platform for business use cases</p>
+<ul style=3D"line-height:175%; text-align:center" align=3D"center"></ul></d=
+iv></div></td></tr></tbody></table>
+  <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" class=3D"" style=3D""><tbody><tr><td class=3D"hs_padded" style=3D"fo=
+nt-family:Arial, sans-serif; font-size:16px; color:#eeeeee; word-break:brea=
+k-word; padding:0px 20px"><div id=3D"hs_cos_wrapper_module-6-0-2" class=3D"=
+hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"c=
+olor: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-gener=
+al-type=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_cos_wrapper_mo=
+dule-6-0-2_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_t=
+ype_rich_text" style=3D"color: inherit; font-size: inherit; line-height: in=
+herit;" data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"rich_text">=
+<p style=3D"margin-bottom:10px; font-size:12px; line-height:175%; text-alig=
+n:center" align=3D"center"><span style=3D"color: #ffffff;"><a href=3D"https=
+://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VVyvLJ3qv3ykN3Tpb6Dd1fvKW842MfZ5H9=
+mg6MyCDmM3qgz0W7Y8-PT6lZ3kvN4gKLCVLhTJzW40HQlm6hXwg5W6P8q5t76jcWyW9l4jdR2-4=
+vnjW6pbzsN8Ck1wlW7fGMWS3q6r42W2QZCfP3s1sCcN3djR4m9mmzTVzXmPH4LqWM2W5bzqTL8G=
+qG4wW73ZhvG2p_dZYW1Zw91M2MndLpW4Q1jyk2j2mV9V9R_TR6Mv4zPW5W0HT268ZHkyW8xzkJn=
+6CgwPZN5zNhV0wLVJJW7K3-wC5QFx0cW5TGQlj866DzcW3Kp_tl8zWcxsVfRZLf5lpyRHW6n0Wp=
+r5Rk1LnVRNr-G5YkxvqVmDGHn5t7rVRW3jYYvR5p23xzW6J7_PV643f70f3JVQnH04" style=
+=3D"color:#ffffff" rel=3D"noopener" data-hs-link-id=3D"0" data-hs-link-id-v=
+2=3D"PTyNP6xz" target=3D"_blank">About</a>&nbsp; |&nbsp; <a href=3D"https:/=
+/e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VVyvLJ3qv3ykN3Tpb6Dd1fvKW842MfZ5H9mg=
+6MyCDmM3qgz0W7Y8-PT6lZ3l7W76ZBql4V6D30MWGQSM_yr0rW1y5XN-72bkbcW8QJtDg3Dt_4-=
+W1vmHZv3m_RJMW3z5Bnc1C_s2fW7VHBFN8cN9XLW8_CDB59fbklQW7v4qY44-y2LPW8-W8ht32X=
+RvmW2-t-S47k-MFYVGSGM-7dptsjVxMh7R14pjsRW7c7tcS7wLL1BW7pVXgx65fYPbVsx0sh91d=
+FtpW70bKrD7rWSjGMj5K-X26gJjW7GCnMs34_wPBVNFHwZ42Yg5bW4bGk9l5qLm9tW7QV8HQ8zD=
+yzCW9lcd012b3xYLW70Ltw48dDTwtW4ZCKDg8VT7HYN5qHbx5w4zBrf3mGsVz04" style=3D"c=
+olor:#ffffff" rel=3D"noopener" data-hs-link-id=3D"0" data-hs-link-id-v2=3D"=
+rYvtPq8Q" target=3D"_blank">Pricing</a>&nbsp; |&nbsp; <a href=3D"https://e.=
+deepgram.com/e3t/Ctc/5D+113/cQMRG04/VVyvLJ3qv3ykN3Tpb6Dd1fvKW842MfZ5H9mg6My=
+CDn23qgz0W8wLKSR6lZ3nqW6Hqtxn3_MhpdW2mz5LL1WjZTJW5g8LKT5trgC3W36TTn_31N4kPW=
+565__08xvrZcW3ytgRQ1j-FwcW6Lm5kZ2rDrVMW638yPx65QkfnW4dwpnh3KgkD0W2-dvGV44q1=
+0pW7Cnz8Q5rTZcXW2W6QT897xX9DW6FRZgw6bJf2xW3BtY-T1qzQn2W7hccMZ3bk_k9W62Z2X97=
+6R7dgN7Ty7ZdRwXspW8wg0_L7mLWkQW8rv02966TzvMW1jtmWs587pKpW7sGR4N5l3Qj7N2vCT_=
+9vbQMDW2VF0Sk1PVdxDW54Qx2Z2GYSgzW5b63CG5m0-vcW8blz4M1Vf_5dW3cD86r6q2-_yW2s5=
+5mS1frWNgf8y4lfb04" style=3D"color:#ffffff" rel=3D"noopener" data-hs-link-i=
+d=3D"0" data-hs-link-id-v2=3D"W1W+kpYp" target=3D"_blank">Get Started</a></=
+span></p></div></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section-7" class=3D"hse-section" style=3D"padding-left:10px; p=
+adding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#0B0B0C" bgcolor=3D"#0B0B0C">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#0B0B0C">
+      <tr style=3D"background-color:#0B0B0C;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-7-0" class=3D"hse-column hse-size-12">
+    <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" class=3D"" style=3D""><tbody><tr><td class=3D"hs_padded" style=3D=
+"font-family:Arial, sans-serif; font-size:16px; color:#eeeeee; word-break:b=
+reak-word; padding:0px 20px 0px 10px"><div id=3D"hs_cos_wrapper_module-7-0-=
+0" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module=
+" style=3D"color: inherit; font-size: inherit; line-height: inherit;" data-=
+hs-cos-general-type=3D"widget" data-hs-cos-type=3D"module"><table role=3D"p=
+resentation" align=3D"center" style=3D"width: auto; text-align: center; mar=
+gin: 0 auto; " class=3D"hs_cos_wrapper_type_social_module">
+  <tbody>
+    <tr>
+      <td class=3D"social-network-cell" align=3D"center" style=3D"font-fami=
+ly:Arial, sans-serif; font-size:16px; color:#eeeeee; word-break:break-word"=
+>
+        <table role=3D"presentation" align=3D"center" style=3D"width: auto;=
+ text-align: center; margin: 0 auto; " class=3D"hs_cos_wrapper_type_social_=
+module_single">
+          <tbody>
+            <tr>
+              <td class=3D"display_block_on_small_screens" align=3D"center"=
+ style=3D"font-family:Arial, sans-serif; font-size:16px; color:#eeeeee; wor=
+d-break:break-word; padding:8px 7px; line-height:1; vertical-align:middle" =
+valign=3D"middle">
+                <a href=3D"https://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VV=
+yvLJ3qv3ykN3Tpb6Dd1fvKW842MfZ5H9mg6MyCDn23qgz0W8wLKSR6lZ3kyW5TlB0H1_l85fN4V=
+Tpj9wjcmQW6cyC4m7cMkcGW4phr_Y3G3cSSVRz0zk3VkSBjW7-3n0659SDJTVMx_QM2KWzfZW5J=
+QLG_6y2HKyW2q7D3R19SvQ-W31_yv_1Hp9YCVNbmNV2P6skYW1zd_2V7JKW2zW6gvbm_4FzTynV=
+4FMy36LvSLXW29-tWN2Z61VjW353Ky51yRvKWN4dkx0tN9J_QVWryrW1NTDVzW8WrRrK49NclqN=
+82WpSYFkfjYW6pBStk9l5KtrW4rLyL06lMwT6W6xFzN37NWdvhW8yRlws1d8BCRVrWh4563s1RF=
+W550WWQ40wFPJW7NC-yG7w2kBWW6h-8V13GbWVlf6tSn-W04" style=3D"color:#00a4bd; t=
+ext-decoration:none !important" data-hs-link-id=3D"0" data-hs-link-id-v2=3D=
+"h2V38kuS" target=3D"_blank"><img src=3D"https://e.deepgram.com/hs/hsstatic=
+/TemplateAssets/static-1.262/img/hs_default_template_images/modules/Follow+=
+Me+-+Email/linkedin_original_white.png" alt=3D"LinkedIn" height=3D"26" styl=
+e=3D"outline:none; text-decoration:none; border:none; width:auto!important;=
+ height:26px!important; vertical-align:middle" valign=3D"middle" width=3D"a=
+uto">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td><td class=3D"social-network-cell" align=3D"center" style=3D"font=
+-family:Arial, sans-serif; font-size:16px; color:#eeeeee; word-break:break-=
+word">
+        <table role=3D"presentation" align=3D"center" style=3D"width: auto;=
+ text-align: center; margin: 0 auto; " class=3D"hs_cos_wrapper_type_social_=
+module_single">
+          <tbody>
+            <tr>
+              <td class=3D"display_block_on_small_screens" align=3D"center"=
+ style=3D"font-family:Arial, sans-serif; font-size:16px; color:#eeeeee; wor=
+d-break:break-word; padding:8px 7px; line-height:1; vertical-align:middle" =
+valign=3D"middle">
+                <a href=3D"https://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VV=
+yvLJ3qv3ykN3Tpb6Dd1fvKW842MfZ5H9mg6MyCDnl3qgz0W95jsWP6lZ3mKW1pchPY8t2vTBVfQ=
+-xq2d15pdW6hbXtV5Nx7NdW2pFpTK90-ztZW5pXfz813yM83W6xJfdr3Wl_2bW2lYXZ67_2dHQW=
+3NVN_W9ghQj3W5Mg59X7gKpYXW32n8G_13V43nW5jdg6424ySYmW8_bDS12-4M5dW20802f8b4N=
+t2W3Tx6dn2y1xcXW77lWF81mFqstW8Fgsrc5jvzmDV8NGT-70LccdW4RCXrH6826FnW554WLl8C=
+0ql8W8j60w_26_cm8V-MbX56j6RMLW1lGnz74z3c8rW31nBhC3Yz0ZwW730cDQ9ksYRqW1FBlpH=
+2J0mb9F7m9MGY9SGRN7gNZvzfx81GW8zDFQT6nT-LsN95TdgPSrYyqV6_LFd6msgLcf70389l04=
+" style=3D"color:#00a4bd; text-decoration:none !important" data-hs-link-id=
+=3D"0" data-hs-link-id-v2=3D"Q/FLPzX6" target=3D"_blank"><img src=3D"https:=
+//e.deepgram.com/hs/hsstatic/TemplateAssets/static-1.262/img/hs_default_tem=
+plate_images/modules/Follow+Me+-+Email/youtube_original_white.png" alt=3D"Y=
+ouTube" height=3D"26" style=3D"outline:none; text-decoration:none; border:n=
+one; width:auto!important; height:26px!important; vertical-align:middle" va=
+lign=3D"middle" width=3D"auto">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td><td class=3D"social-network-cell" align=3D"center" style=3D"font=
+-family:Arial, sans-serif; font-size:16px; color:#eeeeee; word-break:break-=
+word">
+        <table role=3D"presentation" align=3D"center" style=3D"width: auto;=
+ text-align: center; margin: 0 auto; " class=3D"hs_cos_wrapper_type_social_=
+module_single">
+          <tbody>
+            <tr>
+              <td class=3D"display_block_on_small_screens" align=3D"center"=
+ style=3D"font-family:Arial, sans-serif; font-size:16px; color:#eeeeee; wor=
+d-break:break-word; padding:8px 7px; line-height:1; vertical-align:middle" =
+valign=3D"middle">
+                <a  href=3D"https://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/V=
+VyvLJ3qv3ykN3Tpb6Dd1fvKW842MfZ5H9mg6MyCDmM3qgz0W7Y8-PT6lZ3l9W94Qmv-99Mcq8W7=
+ztMG_6KM09DW4S_DNT5r_FQBW9b6jsT8ZRVDcW5X1vc05kjs0TW6Sf_v24KP1wBW66ZLx48krDh=
+6VJl8Yf31PmXvW5_-GRZ97MSTNW15w4jZ6tx1G7W2VQcCH4ZBkNbV6jDFN2MkRx8W7LGmDN4B0j=
+gvN8QhXdkmLhSlW4JmvWr1gXdp9VxqD2g6XrRpNW1GCYZ872zq48N6Mk2jvdrxVQW8pgxdw7j0Z=
+WZVqD5N238ljXWW2BXWxf3fj1qHW8nC5nf8y8WrfW1MR-Jj3_CW8vW7CZRx838CBqhW1kVZwD1_=
+PBn-N2lps1QD6Xw5f1RQ1RR04" style=3D"color:#00a4bd; text-decoration:none !im=
+portant" data-hs-link-id=3D"0" data-hs-link-id-v2=3D"8fKtRfXf" target=3D"_b=
+lank"><img src=3D"https://e.deepgram.com/hs/hsstatic/TemplateAssets/static-=
+1.262/img/hs_default_template_images/modules/Follow+Me+-+Email/twitter_orig=
+inal_white.png" alt=3D"X" height=3D"26" style=3D"outline:none; text-decorat=
+ion:none; border:none; width:auto!important; height:26px!important; vertica=
+l-align:middle" valign=3D"middle" width=3D"auto">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td><td class=3D"social-network-cell" align=3D"center" style=3D"font=
+-family:Arial, sans-serif; font-size:16px; color:#eeeeee; word-break:break-=
+word">
+        <table role=3D"presentation" align=3D"center" style=3D"width: auto;=
+ text-align: center; margin: 0 auto; " class=3D"hs_cos_wrapper_type_social_=
+module_single">
+          <tbody>
+            <tr>
+              <td class=3D"display_block_on_small_screens" align=3D"center"=
+ style=3D"font-family:Arial, sans-serif; font-size:16px; color:#eeeeee; wor=
+d-break:break-word; padding:8px 7px; line-height:1; vertical-align:middle" =
+valign=3D"middle">
+                <a href=3D"https://e.deepgram.com/e3t/Ctc/5D+113/cQMRG04/VV=
+yvLJ3qv3ykN3Tpb6Dd1fvKW842MfZ5H9mg6MyCDmM3qgz0W7Y8-PT6lZ3p5MRsgYkwV4nTW3VDD=
+lM8Gt34tVDKxPM5b7YcBW8BXjQJ33z7pXN159mrkCS4P7N6r93KHlwrZvW1b78lz17Jcr0W74J0=
+zn3MJ86tW5J-skT7Q3NXCW3tlnTF5L8h4jW50bdh-4PxFV_W2xZk2k8h7wz-W6KyFkR1F0PLfW3=
+Sthmg2mj54fW8JlvM695WXwmVZyKnr69vWk6W1dL6kp6FGhJ5W18H5PR3WtW15VbckYd3H8hqmW=
+6hSg002gXVkGW7xM0xs4B8LfYV-yRZZ62WJYRW2hKwW66S9nPLVj7pTT1x-qptVJK_ft6XsJZPW=
+1MM8Rn30vwBrf70_hpz04" style=3D"color:#00a4bd; text-decoration:none !import=
+ant" data-hs-link-id=3D"0" data-hs-link-id-v2=3D"QlSA0yIw" target=3D"_blank=
+"><img src=3D"https://e.deepgram.com/hs/hsstatic/TemplateAssets/static-1.26=
+2/img/hs_default_template_images/modules/Follow+Me+-+Email/facebook_origina=
+l_white.png" alt=3D"Facebook" height=3D"26" style=3D"outline:none; text-dec=
+oration:none; border:none; width:auto!important; height:26px!important; ver=
+tical-align:middle" valign=3D"middle" width=3D"auto">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section-8" class=3D"hse-section hse-section-last" style=3D"pad=
+ding-left:10px; padding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; padding-top:20px">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation">
+      <tr>
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;padding-top:20px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-8-0" class=3D"hse-column hse-size-12">
+  <div id=3D"hs_cos_wrapper_module-8-0-0" class=3D"hs_cos_wrapper hs_cos_wr=
+apper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; font-size=
+: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-=
+hs-cos-type=3D"module"><table role=3D"presentation" class=3D"hse-footer hse=
+-secondary" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=3D"fon=
+t-family:Arial, sans-serif; font-size:12px; line-height:135%; color:#23496d=
+; margin-bottom:0; padding:0">
+  <tbody>
+    <tr>
+      <td align=3D"center" valign=3D"top" style=3D"font-family:Arial, sans-=
+serif; font-size:16px; color:#eeeeee; word-break:break-word; text-align:cen=
+ter; margin-bottom:0; line-height:135%; padding:10px 20px">
+        <p style=3D"font-family:Arial, sans-serif;font-size:12px;font-weigh=
+t:normal;text-decoration:none;font-style:normal;color:#d7dfeb">
+          Deepgram, 548 Market St., San Francisco, CA, United States
+        </p>
+        <p>
+          <a data-unsubscribe=3D"true" href=3D"https://e.deepgram.com/hs/pr=
+eferences-center/en/direct?data=3DW2nXS-N30h-RcW2p2zGl2Rrf7nW2qRJpG3zhQ-HW3=
+0HkbQ3XzjxbW2HHCv51XlY8yW45nxwB3W4NwTW2MSHlw49vShlW3BYtrl1Sl1g9W2p9Dvx3XGmc=
+sW2HpBnM2FSwwvW3QFF9r2MFrVpW41t8Ff3NRRyTW2MqS1p3b2SCfW4fPGpw2Ymk4-W32pCdK43=
+GkMPW4tyj-_3zgxKZW4t7Gxz4hGQ3mW3_YhGc41Q3vvW2Rzny62PD16PW4hq2Pp2-KFGcW252Tg=
+32zFKvZW2RBD-94kcts3W4fkhRM34z-kRW30n_kR2vY6lwW34yjlh3H7mwVW2B1Zqr3QKszzW1V=
+p8k_3d8TSWW3VJ9Ft43SlFmW2qz5cB2Fwd1CW2PmNgp3_sZkWW1X0bfT49l2qcW1LxDVV2nR09V=
+W2MVppF3ZV910W3CbJ8_3bBGVKW2WnpXg1SsPSqW4mrfXD1BtkrYW2HsyH83BYXy-W4hGRtN4mp=
+GPsW1NfwYW1Q6br4W32DHZJ367skYW3M4sJx1S37-9W4p9hrn4th6cSW4htMJm43rHvdW2p0vJJ=
+2p7WZBW30bcrj3W1-35W4ry6h84rhNJsW2CZ4mM3_tnHBW3bC1nm2YFJ3xW3zkvpB2zQTYSW4r6=
+fMX3ghPcCW2-zQTK1N6trnW38gnY93QLLdQW1XptF93_BxmJW1Bxh7F3dgQyXW385d1X3dkffGf=
+2HZxGG04&amp;utm_campaign=3D31135029-1225%20Multi-Agent%20Voice%20AI%20Syst=
+ems%20Webinar&amp;utm_source=3Dhs_email&amp;utm_medium=3Demail&amp;utm_cont=
+ent=3D394764304&amp;_hsenc=3Dp2ANqtz-88aFTgTxkRAfElty4evbOGWBFC-FId2ElIKiH0=
+WPHLN-E4Vqywo39nUb26Ev49JRpw4QVEDOZdQBTyZCoLf3KqspX7ng&amp;_hsmi=3D39476430=
+4" style=3D"font-family:Helvetica,Arial,sans-serif; font-size:12px; color:#=
+0066cc; font-weight:normal; text-decoration:underline; font-style:normal" d=
+ata-hs-link-id=3D"0" data-hs-link-id-v2=3D"SFRZzEXk" target=3D"_blank">Unsu=
+bscribe</a>
+          <a data-unsubscribe=3D"true" href=3D"https://e.deepgram.com/hs/pr=
+eferences-center/en/page?data=3DW2nXS-N30h-RcW2p2zGl2Rrf7nW2qRJpG3zhQ-HW30H=
+kbQ3XzjxbW2HHCv51XlY8yW45nxwB3W4NwTW2MSHlw49vShlW3BYtrl1Sl1g9W2p9Dvx3XGmcsW=
+2HpBnM2FSwwvW3QFF9r2MFrVpW41t8Ff3NRRyTW2MqS1p3b2SCfW4fPGpw2Ymk4-W32pCdK43Gk=
+MPW4tyj-_3zgxKZW4t7Gxz4hGQ3mW3_YhGc41Q3vvW2Rzny62PD16PW4hq2Pp2-KFGcW252Tg32=
+zFKvZW2RBD-94kcts3W4fkhRM34z-kRW30n_kR2vY6lwW34yjlh3H7mwVW2B1Zqr3QKszzW1Vp8=
+k_3d8TSWW3VJ9Ft43SlFmW2qz5cB2Fwd1CW2PmNgp3_sZkWW1X0bfT49l2qcW1LxDVV2nR09VW2=
+MVppF3ZV910W3CbJ8_3bBGVKW2WnpXg1SsPSqW4mrfXD1BtkrYW2HsyH83BYXy-W4hGRtN4mpGP=
+sW1NfwYW1Q6br4W32DHZJ367skYW3M4sJx1S37-9W4p9hrn4th6cSW4htMJm43rHvdW2p0vJJ2p=
+7WZBW30bcrj3W1-35W4ry6h84rhNJsW2CZ4mM3_tnHBW3bC1nm2YFJ3xW3zkvpB2zQTYSW4r6fM=
+X3ghPcCW2-zQTK1N6trnW38gnY93QLLdQW1XptF93_BxmJW1Bxh7F3dgQyXW385d1X3dkffGf2H=
+ZxGG04&amp;utm_campaign=3D31135029-1225%20Multi-Agent%20Voice%20AI%20System=
+s%20Webinar&amp;utm_source=3Dhs_email&amp;utm_medium=3Demail&amp;utm_conten=
+t=3D394764304&amp;_hsenc=3Dp2ANqtz-88aFTgTxkRAfElty4evbOGWBFC-FId2ElIKiH0WP=
+HLN-E4Vqywo39nUb26Ev49JRpw4QVEDOZdQBTyZCoLf3KqspX7ng&amp;_hsmi=3D394764304"=
+ style=3D"font-family:Helvetica,Arial,sans-serif; font-size:12px; color:#00=
+66cc; font-weight:normal; text-decoration:underline; font-style:normal" dat=
+a-hs-link-id=3D"0" data-hs-link-id-v2=3D"qjPJqCop" target=3D"_blank">Manage=
+ preferences</a>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div></div>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+ =20
+<img src=3D"https://e.deepgram.com/e3t/Cto/5D+113/cQMRG04/VVyvLJ3qv3ykN3Tpb=
+6Dd1fvKW842MfZ5H9mg6VyCD6f3Cw2mY132" alt=3D"" width=3D"1" height=3D"1" bord=
+er=3D"0" style=3D"display:none!important;min-height:1px!important;width:1px=
+!important;border-width:0!important;margin-top:0!important;margin-bottom:0!=
+important;margin-right:0!important;margin-left:0!important;padding-top:0!im=
+portant;padding-bottom:0!important;padding-right:0!important;padding-left:0=
+!important"></body></html>
+------=_Part_1831551_1044227324.1765984198308--

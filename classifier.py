@@ -23,24 +23,18 @@ TASK_INSTRUCTION = "Classify this email as phishing or legitimate based on its c
 
 # --- LABELED EXAMPLES (few-shot learning) ---
 # The instruct model learns what phishing looks like from these examples
+# Balanced: 4 phishing, 4 legitimate
 LABELED_EXAMPLES = {
-    # Phishing - Banking/Financial
+    # Phishing - diverse scam types
     "email/sample-1.eml": {"is_phishing": True, "label": "Banking points scam"},
-    "email/sample-2.eml": {"is_phishing": True, "label": "Bank verification scam"},
-    "email/sample-5.eml": {"is_phishing": True, "label": "Account blocked scam"},
-    # Phishing - Advance fee fraud
     "email/sample-3.eml": {"is_phishing": True, "label": "Advance fee fraud (419 scam)"},
-    # Phishing - Crypto/Web3
-    "email/sample-8.eml": {"is_phishing": True, "label": "Crypto recovery scam"},
-    "email/sample-9.eml": {"is_phishing": True, "label": "Fake crypto transaction"},
-    "email/sample-12.eml": {"is_phishing": True, "label": "Fake exchange verification"},
-    "email/sample-15.eml": {"is_phishing": True, "label": "Seed phrase theft"},
-    # Phishing - Tech impersonation
     "email/sample-10.eml": {"is_phishing": True, "label": "Fake sign-in alert"},
-    # Phishing - Prize/Contest scams
-    "email/sample-6.eml": {"is_phishing": True, "label": "Prize scam"},
-    # Legitimate
+    "email/sample-15.eml": {"is_phishing": True, "label": "Seed phrase theft"},
+    # Legitimate - real service emails
     "email/sample-4.eml": {"is_phishing": False, "label": "Newsletter unsubscribe"},
+    "email/sample-njtransit.eml": {"is_phishing": False, "label": "NJ Transit alert"},
+    "email/sample-deepgram.eml": {"is_phishing": False, "label": "Deepgram product update"},
+    "email/sample-chess.eml": {"is_phishing": False, "label": "Chess.com notification"},
 }
 
 

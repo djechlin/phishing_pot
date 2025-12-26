@@ -1,0 +1,902 @@
+Delivered-To: user@example.com
+Received: by 2002:ab0:30d9:0:b0:937:2626:39bf with SMTP id c25csp2042326uam;
+        Mon, 22 Dec 2025 11:51:25 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHED/9ZzbcfuuYubdzrzZcHzTFjF8QAHuPLrJiJwbb6rmYn3QvPVGoSH4GNv6NnCFHl33kE
+X-Received: by 2002:a05:622a:2610:b0:4f3:4cde:1660 with SMTP id d75a77b69052e-4f4abde3adbmr196869301cf.83.1766433084795;
+        Mon, 22 Dec 2025 11:51:24 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1766433084; cv=none;
+        d=google.com; s=arc-20240605;
+        b=hcsSc0EIOXnCpPPuj9d8R5F1+zX7z/sV63CZzh6aUPiz0pelAApSEx15QEtPKA4On6
+         s97UzixLm3pNaLVORnds9cW5aAkrvAma9BgfcVnKU4x16k8pbpSUP/9KIuilJ/gFO1f8
+         5LWapM2hZ/9yHZetIMzPcUF1g2vRFFXyoMr5R/GnAQQejH+/ZMXa4siuxf8nSB7Q8tQk
+         zi/NprXkqYzAuby9vxsDEsQkRsfLRXJBxLqnR4NRProP6OsT17JKmgjAwyLVkTAOgaBz
+         JtmZh7l93igg4fb856+kr35cdcmTE3q1+tgJHpwTfzw0CbYVQWXKce2dcF+ezJhyUX5y
+         ItLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:list-unsubscribe-post:precedence:mime-version:subject
+         :message-id:to:reply-to:from:date:list-unsubscribe:dkim-signature
+         :dkim-signature;
+        bh=mIvs/fviaPcNEp0RKg/muVzJVD2Hx58tFf/R2N9fCv8=;
+        fh=YxhW1nkReNhsME3KXmHt5MgBHY2Y2UhfiSAxwHuZZSM=;
+        b=dXz2i3QO6T040WJKGUVxSt/A+SlxKTFGwHSzpEHltwmUxUXIZsM8elUbH1NKpDHKyW
+         oF2sEIH6zcjAxMfhsB3iBUb6qvLduSB52XwfHAzuCXZNyMEaqGKfG/kl3cmWUbT8jvLY
+         /O1zVd68k7+Mclf1SfEDJPFMiKmQLxR0Z+b11pwTTM+yMtKZFAcVVDGhs2HsSxopIs9n
+         bumYTLlVaANX2mCs5UqhXCjmereCBcS7rz9+BkiNph2J3NZlkCI/TFzqFkK6YtLjY3jw
+         gdhV1HCjnnyT0g5x1L385ohN6at7G60vN0RcnJ6fPAAlqtwSiqXyzy3T6w0RrL26QNuz
+         NJbw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@20096244m.njtransit.com header.s=hs1 header.b=nqFEFKpi;
+       dkim=pass header.i=@njtransit.com header.s=hs2-20096244 header.b=UsHcw2eE;
+       spf=pass (google.com: domain of 1axbsqo2rorn1ppi5p2pp500b86xg715txxxck-user=example.com@20096244m.njtransit.com designates 158.247.25.249 as permitted sender) smtp.mailfrom="1axbsqo2rorn1ppi5p2pp500b86xg715txxxck-user=example.com@20096244m.njtransit.com";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=njtransit.com
+Return-Path: <1axbsqo2rorn1ppi5p2pp500b86xg715txxxck-user=example.com@20096244m.njtransit.com>
+Received: from bid475n.20096244m.njtransit.com (bid475n.20096244m.njtransit.com. [158.247.25.249])
+        by mx.google.com with ESMTPS id d75a77b69052e-4f4ac6bc905si140780521cf.394.2025.12.22.11.51.24
+        for <user@example.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 22 Dec 2025 11:51:24 -0800 (PST)
+Received-SPF: pass (google.com: domain of 1axbsqo2rorn1ppi5p2pp500b86xg715txxxck-user=example.com@20096244m.njtransit.com designates 158.247.25.249 as permitted sender) client-ip=158.247.25.249;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@20096244m.njtransit.com header.s=hs1 header.b=nqFEFKpi;
+       dkim=pass header.i=@njtransit.com header.s=hs2-20096244 header.b=UsHcw2eE;
+       spf=pass (google.com: domain of 1axbsqo2rorn1ppi5p2pp500b86xg715txxxck-user=example.com@20096244m.njtransit.com designates 158.247.25.249 as permitted sender) smtp.mailfrom="1axbsqo2rorn1ppi5p2pp500b86xg715txxxck-user=example.com@20096244m.njtransit.com";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=njtransit.com
+Received: by 172.16.151.63 with SMTP id a0cij75oyuvslmoufgfnyacj8spuugu35gu4vjto9r5;
+        Mon, 22 Dec 2025 19:50:40 GMT
+DKIM-Signature: v=1; s=hs1; d=20096244m.njtransit.com;
+         i=@20096244m.njtransit.com;
+         h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id:list-unsubscribe-post;
+         a=rsa-sha256; c=relaxed/relaxed;
+         bh=mIvs/fviaPcNEp0RKg/muVzJVD2Hx58tFf/R2N9fCv8=;
+         b=nqFEFKpifC0PfRY12PheYjn7jNE6FApUlEyW2tVUxedPs7FgubatafRtFgzsZa
+         dDX4Ye8efNwzUFpOaeKE0rDKQ61B6d75VSHh2Jw+dTv8fFHwyqHtyKHjqsB1cv8
+         55e9/BVWBAdRCfbksvWYSUu4I1g10vHhiyrIQDrzmfBs0vOBJWnL59wjrvzxRSj
+         MWSQ2KbOJvFXTlFvGVtKA4nh75cKJERgKULdT6XUC/NH4JmiMeBmZyv8XSy9xW4
+         Rhn4Act0nRR9ZC5dNhwYDzDTlHLFOB9e7mqeK1hX71KnsfNOuMaxixUfILvt1Zn
+         kSeo3lo/Q/1RTQKDONWMhqYFMoAA==; q=dns/txt; t=1766430640;
+         x=1766693440;
+DKIM-Signature: v=1; s=hs2-20096244; d=njtransit.com;
+         i=@njtransit.com;
+         h=sender:from:from:reply-to:to:to:cc:cc:subject:subject:list-unsubscribe:form-sub:feedback-id:list-unsubscribe-post;
+         a=rsa-sha256; c=relaxed/relaxed;
+         bh=mIvs/fviaPcNEp0RKg/muVzJVD2Hx58tFf/R2N9fCv8=;
+         b=UsHcw2eE0a82RyAbohICwPwTjHy7rz+qL9p3BuxHQKbjFxDcFS657ktPcrdDMY
+         MPDKUsqFveQfQAUKcbTxmF9id/4MNIDqZ5fQ5yrJlzign7DXDUFLOcu+KF6dAhj
+         C6J/Qoz2fRrHr2cLpqpWHaFdaQuNsc6xjM4KAkbZQBUpTNHKSHxO6IpvIB4ozop
+         pjQa1weEs5tC9lpHu9luoyv5WltIiaYMnEdiHyZPqT1SBN+Q+F9qNmxaFiDaneR
+         sFBuwnJanrN6B7/3UTOLgHNZXE5+AD/WOuiyAqMvrt2MESk2H2kD3uojeKWXXMF
+         G8cou+KT1UyGLX8GIn1ddcWGW1WQ==; q=dns/txt; t=1766430640;
+         x=1766693440;
+Return-Path: <1axbsqo2rorn1ppi5p2pp500b86xg715txxxck-user=example.com@20096244m.njtransit.com>
+X-HS-Cid: 1axe0pncbj77jx87nwq5whoq9fb4qmjkxe6mtw
+List-Unsubscribe: <mailto:1axc5uf7jgerco4lk404y2hpuat15lwy0r0pas-user=example.com@20096244m.njtransit.com?subject=unsubscribe>, <https://ride.njtransit.com/hs/subscription-preferences/v2/unsubscribe-all?data=W2nXS-N30h-M8W4pr5zD3P7xPYW3DH3GL3LJ8xCW34ynjf2RB_L1W3gt0lj3VZnkXW3gccJZ3dtcf3W2RCq663gwYyHW2qS13v30bCNnW3g8Hjm1Y-gYdW4kJDRG1SltTnW3ZJ7CJ3jgQ-ZW4cstbG4tp0tvW1S34F02r60d0W49JB2C47m-svW1SsPpc1Vw0SdW1N832d4cR3H-W3f_bGD3R5hmDW3H4P0L2MPT1vW2xzKLb2D1kZtW219y1W2FK37YW4kHTSd3ZxW7zW4mDGCw3DK_r7W3gs6HC4hw2SVW1LC2wr41z_hMW41S7wl32rd5PW1QrlrX4ptbtcW3SK_P-2KYZk3W2-JQQF1QfhynW4fwHLp1Z72txW49xRMM23p1Q7W2-m7Cy3dqcb9W34h7C53ZHlHLW2sR0V92vzvPYW1_tYqH3X-kSyW2szkNx4kt-9nW4pKw603bjgRZW3484M_43WDb6W2RPPSB2Ksdt0W3gg5Wq3XH-MPW32jbqJ3VJGPwW1_37kc1ScStBW3j85df3M2gQhW3K2YFn1V8GzHW2t1gcC3R2P3TW1Qjbgc4hfKflW3z0S8d3grkk3W3F8nS232kwx2W4tt7KX3NDGJpW3_ZCB82FzxSZW4ctq612v-7jyW2PmJ7y3K2xMBW4psPqv3K6kkDW4cHzfN2F-czjW2p0T222vCDKQW1Q4ZTC41D1_B0>
+Date: Mon, 22 Dec 2025 14:50:40 -0500
+From: NJ TRANSIT <njtsurvey@njtransit.com>
+Reply-To: njtsurvey@njtransit.com
+To: user@example.com
+Message-ID: <1766430633931.1170cb4c-d063-4c2d-a568-7356d94d6429@20096244m.njtransit.com>
+Subject: Last Call: How Was Your Ride on NJ TRANSIT?
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="----=_Part_1036318_1723507124.1766430640443"
+Precedence: bulk
+X-Report-Abuse-To: abuse@hubspot.com (see https://policy.hubspot.com/abuse-complaints)
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Feedback-ID: ael80na:aigttwn4:aidf:HubSpot
+
+------=_Part_1036318_1723507124.1766430640443
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Complete to be entered into a drawing for either a monthly pass or a $100 g=
+ift card. In addition, you will earn 250 NJT Rewards points
+
+Para Espa=C3=B1ol haga clic aqu=C3=AD (https://ride.njtransit.com/e3t/Ctc/L=
+Z+113/d2mDKH04/VVvn2V2QzfJPW1H3r7p39mr4sW1vWpFD5HnrjmN7qyl0T3prCCW8wLKSR6lZ=
+3nzW7GM2qf52Gdp-W53TzMR8L3-szW8bvTvD7g9q6CW2RX2jk7MN7y7W7PFG4v8bDrZJVT1-F85=
+BDFg_N8Bnx_WF6kcQM2xc5PJBCcGW2rQpnf2DvJhpW5v5-d63YMGJHW2RjckL3rJrN2W5M_15h3=
+rrljdW8C4SZx1XyVPgW6dpwyl6cMq-FW12BzHV8lN5Z1W3Y6n_B6Yq-MTW2K-bQD6GxpqmW5RD_=
+Zw1jmQ3nW6LLZYD1GKYHbW4yDwyW3FWwh5W51PqFp8nyHl4W4v4mcJ2RdrS0W6bjDqr97LSDyW5=
+TYlxC13kWJ7W86VqKz2BhvJkW4zMxCB264XFyW3FrGZd6zWyKhW6s6Qv243ffvMf1hv7XT04 )
+
+Hello from NJ TRANSIT!
+
+Whether you ride with us every day or just occasionally, your feedback help=
+s us improve.
+
+Why Participate?
+
+Complete our survey and:
+
+- Enter to win a monthly pass or $100 gift card and
+- Earn 250 NJT Rewards points
+- We=E2=80=99re listening =E2=80=93 your opinion matters to NJ TRANSIT
+
+How to Participate
+
+- Choose the NJ TRANSIT mode below that you use most to begin
+- Use any device =E2=80=94 phone, tablet, or computer
+- You can complete a survey for each mode you use
+
+We truly value your feedback and use it to make real improvements.
+
+Thanks for riding with us =E2=80=94 and happy holidays from all of us at NJ=
+ TRANSIT!
+
+css_njtlight (https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2V2Qzf=
+JPW1H3r7p39mr4sW1vWpFD5HnrjmN7qyl0z3prCCW7Y8-PT6lZ3mwW52jD-X3yBVfQW39lSx14-=
+yCPPW4dggXD6tQdv_W2yHpn36xlDvYW6S9zNj7GjctwW7t0flv4R8tkPW8d_TfW5nvt6fW3GD_z=
+H31h9zsW6yF57K3FsxggVdhvbJ8gZy3yW8D9KMh26JssmVDN1Bt8MPwSKW177YwF6DCsjVW8FhQ=
+yd8GYcnTW27lypf7d_n0GW4FrWdV4dKkfHW2dfGPT27tMCSW8JHy8K51KN4NW40S6Tj6gKwL3W2=
+cLwWv8nZ8LYW2SHMzV8KBYNcW6WyGQG6M6JqHW5psghn145TGQW8Xnkfg1LvKXzN4vBqPJkqKwN=
+VZF-6b8fqWb2f4h5C7z04 )
+
+NJ TRANSIT (https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2V2QzfJP=
+W1H3r7p39mr4sW1vWpFD5HnrjmN7qyl0z3prCCW7Y8-PT6lZ3mwW52jD-X3yBVfQW39lSx14-yC=
+PPW4dggXD6tQdv_W2yHpn36xlDvYW6S9zNj7GjctwW7t0flv4R8tkPW8d_TfW5nvt6fW3GD_zH3=
+1h9zsW6yF57K3FsxggVdhvbJ8gZy3yW8D9KMh26JssmVDN1Bt8MPwSKW177YwF6DCsjVW8FhQyd=
+8GYcnTW27lypf7d_n0GW4FrWdV4dKkfHW2dfGPT27tMCSW8JHy8K51KN4NW40S6Tj6gKwL3W2cL=
+wWv8nZ8LYW2SHMzV8KBYNcW6WyGQG6M6JqHW5psghn145TGQW8Xnkfg1LvKXzN4vBqPJkqKwNVZ=
+F-6b8fqWb2f4h5C7z04 )
+
+Light Rail (https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2V2QzfJP=
+W1H3r7p39mr4sW1vWpFD5HnrjmN7qyl0z3prCCW7Y8-PT6lZ3mwW52jD-X3yBVfQW39lSx14-yC=
+PPW4dggXD6tQdv_W2yHpn36xlDvYW6S9zNj7GjctwW7t0flv4R8tkPW8d_TfW5nvt6fW3GD_zH3=
+1h9zsW6yF57K3FsxggVdhvbJ8gZy3yW8D9KMh26JssmVDN1Bt8MPwSKW177YwF6DCsjVW8FhQyd=
+8GYcnTW27lypf7d_n0GW4FrWdV4dKkfHW2dfGPT27tMCSW8JHy8K51KN4NW40S6Tj6gKwL3W2cL=
+wWv8nZ8LYW2SHMzV8KBYNcW6WyGQG6M6JqHW5psghn145TGQW8Xnkfg1LvKXzN4vBqPJkqKwNVZ=
+F-6b8fqWb2f4h5C7z04 )
+
+css_njtrail-1 (https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2V2Qz=
+fJPW1H3r7p39mr4sW1vWpFD5HnrjmN7qyl0z3prCCW7Y8-PT6lZ3nRW7zBC9t34vQ2nV30gYl8d=
+418vVD-F-s2wqjMLW1K6lvy5xC1dMW2DGMN31g-bwTW7W9Nyp1Bx0qcW4t4wx497sxcDW8rdGkk=
+4-yLXCW6vLXy_1LD-1KN78LK50-h2wHW3rSwT55bqRMxW1bcGXq8p5VdwW4DGWnN88SwtZN2BTd=
+zSCK1jVW5lCjfD7YWmy3V5BKgZ8pbpYRW58VcTB746vkhW13WK8G8CL0RhW32PkTR9d0m0tW681=
+Xrh2HR0F0W47YPz06SDjHJW4hkqFv41qX4NW3hh0gD8jB2y-W6s50wZ4BBPcZW3n6RJm53-S9lW=
+8KHjZQ2PzD_5f2HbfJT04 )
+
+NJ TRANSIT Rail (https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2V2=
+QzfJPW1H3r7p39mr4sW1vWpFD5HnrjmN7qyl0z3prCCW7Y8-PT6lZ3nRW7zBC9t34vQ2nV30gYl=
+8d418vVD-F-s2wqjMLW1K6lvy5xC1dMW2DGMN31g-bwTW7W9Nyp1Bx0qcW4t4wx497sxcDW8rdG=
+kk4-yLXCW6vLXy_1LD-1KN78LK50-h2wHW3rSwT55bqRMxW1bcGXq8p5VdwW4DGWnN88SwtZN2B=
+TdzSCK1jVW5lCjfD7YWmy3V5BKgZ8pbpYRW58VcTB746vkhW13WK8G8CL0RhW32PkTR9d0m0tW6=
+81Xrh2HR0F0W47YPz06SDjHJW4hkqFv41qX4NW3hh0gD8jB2y-W6s50wZ4BBPcZW3n6RJm53-S9=
+lW8KHjZQ2PzD_5f2HbfJT04 )
+
+NJ Transit Bus (https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2V2Q=
+zfJPW1H3r7p39mr4sW1vWpFD5HnrjmN7qyl0z3prCCW7Y8-PT6lZ3l4W5DDD-64lrQ8PN61b2NG=
+BbbG2W16qyYn94p5gJW4VCvY_2C6fyJW69FYFG68p2VBW1HPRWF1PVBdYW3yHN5n3MjqVSW2h1w=
+Vp6s_rx1W4HxtDS5P2KbyN3qNqcwm9CzlW8HSG2J7P00qXW4g2bvQ6W_hXZN1PrxmR27D6sW67C=
+xpG5PnMypW4L3SHK4ZDX15W9061MK1RP6v4W41PkgW7LMgjMW7gg6yy8jPLCjW1gHX837535jRW=
+87VvlD8DQPdbW16pxRN2V1GCrW79QXDx6kM1QbW9h4bbL2JkT16W3BS73V2KJvhkW8swMBq3yjh=
+SCW1x-Kcr7-pFKxf2SyRXY04 )
+
+NJ TRANSIT Bus (https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2V2Q=
+zfJPW1H3r7p39mr4sW1vWpFD5HnrjmN7qyl0z3prCCW7Y8-PT6lZ3l4W5DDD-64lrQ8PN61b2NG=
+BbbG2W16qyYn94p5gJW4VCvY_2C6fyJW69FYFG68p2VBW1HPRWF1PVBdYW3yHN5n3MjqVSW2h1w=
+Vp6s_rx1W4HxtDS5P2KbyN3qNqcwm9CzlW8HSG2J7P00qXW4g2bvQ6W_hXZN1PrxmR27D6sW67C=
+xpG5PnMypW4L3SHK4ZDX15W9061MK1RP6v4W41PkgW7LMgjMW7gg6yy8jPLCjW1gHX837535jRW=
+87VvlD8DQPdbW16pxRN2V1GCrW79QXDx6kM1QbW9h4bbL2JkT16W3BS73V2KJvhkW8swMBq3yjh=
+SCW1x-Kcr7-pFKxf2SyRXY04 )
+
+access-1 (https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2V2QzfJPW1=
+H3r7p39mr4sW1vWpFD5HnrjmN7qyl0z3prCCW7Y8-PT6lZ3n5VVrDZc6tGMMfN2dFKHf3syhdW2=
+vsjHl6wpTMsW2BH1Xt8qvPrQW52Xv1Y1TlfFKN24kwmVMxXpWVHsl9Y17h9kKW4zJ6-V2snBy9W=
+1KsFpR3JdL1TN7ykR6Wdrr5tW8ZwbpF5HkmBvW5myxsj8G6d19Vvsrkx59jcd_W78BRYY48K34Q=
+W57nm131dpwZkW4vHk7P3MCdcKW1ZtRkf2zkMg2W1Zy6SS3DNChwW3PNpq27J5Tg7N7hn1bvJCh=
+RsW3CWwNT3j4zlqW8k2QN56Z8kXKVzsyQ152_kJhW5j3mwQ2xzDd6W3QKcb233SV-pW1GcCZ47q=
+x79Mf8-DJsH04 )
+
+Access Link (https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2V2QzfJ=
+PW1H3r7p39mr4sW1vWpFD5HnrjmN7qyl0z3prCCW7Y8-PT6lZ3n5VVrDZc6tGMMfN2dFKHf3syh=
+dW2vsjHl6wpTMsW2BH1Xt8qvPrQW52Xv1Y1TlfFKN24kwmVMxXpWVHsl9Y17h9kKW4zJ6-V2snB=
+y9W1KsFpR3JdL1TN7ykR6Wdrr5tW8ZwbpF5HkmBvW5myxsj8G6d19Vvsrkx59jcd_W78BRYY48K=
+34QW57nm131dpwZkW4vHk7P3MCdcKW1ZtRkf2zkMg2W1Zy6SS3DNChwW3PNpq27J5Tg7N7hn1bv=
+JChRsW3CWwNT3j4zlqW8k2QN56Z8kXKVzsyQ152_kJhW5j3mwQ2xzDd6W3QKcb233SV-pW1GcCZ=
+47qx79Mf8-DJsH04 )
+
+To earn 250 NJT rewards points, complete the survey and enter the email add=
+ress that you used to sign up for NJT Rewards points. If you are not regist=
+ered for NJT Rewards points, use the same email address to register at NJT =
+Rewards (https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2V2QzfJPW1H=
+3r7p39mr4sW1vWpFD5HnrjmN7qyk_-3prCCW6N1vHY6lZ3mhW52VhZn5ZV4p-N1dYsWnlmg-3W3=
+wYhWH21Jbq-W6Vgyzg4FFZZzW8mRPgJ7Dkm0MW6grL8m63ffTjW7hH4cV3VthR9VyyHHR1L7vj6=
+W5TmxjF3k6YLqW7Cbxhh3ZtbztW2lQ9bq3sFBP9VnNLkR4l31ggW1RBTlS2vS_m9Vh7dTq3txRz=
+TW6npNms7z8VRMW8HL2j77-KmsrW82n0rS1fSrv1W6Bl0X46wBk-MW37jM1z2Y24YkN1ly402wb=
+QQ7W79P_HY8Nft3qW41cNlQ6TprJyf2pPb9Y04 ) .NJT Rewards points will be added =
+to your account by January 30, 2026.
+
+If you are unable to complete the survey via the online link, you can leave=
+ a message at 973-491-4222 and someone will call you back to conduct the su=
+rvey over the telephone.
+
+NJ TRANSIT, 2 Gateway, 18th Floor, Newark, NJ 07105, United States
+
+Unsubscribe (https://ride.njtransit.com/hs/preferences-center/en/direct?dat=
+a=3DW2nXS-N30h-M8W3K295n3FfMhSW2-szLs254cGTW2vwcF52MLxGgW1VfgWm1XfwF4W30Ccg=
+434gnHrW3P1HMC4rfl9pW2FS8hb2FXJvjW21mbHm3ZTR7cW3S_grj3DSKWkW2HVllX3f__fdW2-=
+N65v2HZ78rW3g0t341N5_1pW2PK3r_2YCGZwW2WH_cP4fw99qW4rJ3P72s_d2yW3SzL6G2KG4Rj=
+W2-8lct2szmNWW2PPF472PC9nvW2PWqxc1-XbhKW1ZbMs42p4f35W2xNbmS3W3YLxW2nN2Tx30D=
+689W3VSz6q1BtMQnW4cLY-92YH04yW49Lgsm3_YmHZW3ZxVg11_jtc8W3Z-Z_c2CGkY9W30GvPd=
+2vKPlkW3HfxCJ2MPlmwW2PnBCs34BMjRW2szMfd2nFsSKW1Bs7-T2RCmnQW2PPdXf2FXjSRW3BT=
+LTt3X_BxSW2s_Dyc1Q3hmyW3d82Dl2FHM1wW41Ccpy4cwV19W3DX0qc4cjDkHW3yR2_W1Bm-ZvW=
+23jT463gdYf4W49lxw53NH7H9W3g8mnm3NBW-GW2WJtFt3VXDHjW3F524s4czKcvW2YCfLF4r8N=
+YSW3P7-w81Bw2BBW4r49L-2RJS42W3T1k2w20XmvvW30B0h-3P5393W2Yf1fn36g7dHW3LRj1m2=
+zQpS7W2-s4SQ3NF4TNW45mg1w4t8zfQW2Ws8xR3T0rhRf4cxKMJ04&_hsenc=3Dp2ANqtz-_J8q=
+GkvnD9MZOs7NRcHal63U1LEfvGke4xnkBBvsRgmKbWYZ332_gFijUHybTsNFgCfQMCsZspI-AFJ=
+ywyrAnak026GA&_hsmi=3D395625234 )
+Manage preferences (https://ride.njtransit.com/hs/preferences-center/en/pag=
+e?data=3DW2nXS-N30h-M8W3K295n3FfMhSW2-szLs254cGTW2vwcF52MLxGgW1VfgWm1XfwF4W=
+30Ccg434gnHrW3P1HMC4rfl9pW2FS8hb2FXJvjW21mbHm3ZTR7cW3S_grj3DSKWkW2HVllX3f__=
+fdW2-N65v2HZ78rW3g0t341N5_1pW2PK3r_2YCGZwW2WH_cP4fw99qW4rJ3P72s_d2yW3SzL6G2=
+KG4RjW2-8lct2szmNWW2PPF472PC9nvW2PWqxc1-XbhKW1ZbMs42p4f35W2xNbmS3W3YLxW2nN2=
+Tx30D689W3VSz6q1BtMQnW4cLY-92YH04yW49Lgsm3_YmHZW3ZxVg11_jtc8W3Z-Z_c2CGkY9W3=
+0GvPd2vKPlkW3HfxCJ2MPlmwW2PnBCs34BMjRW2szMfd2nFsSKW1Bs7-T2RCmnQW2PPdXf2FXjS=
+RW3BTLTt3X_BxSW2s_Dyc1Q3hmyW3d82Dl2FHM1wW41Ccpy4cwV19W3DX0qc4cjDkHW3yR2_W1B=
+m-ZvW23jT463gdYf4W49lxw53NH7H9W3g8mnm3NBW-GW2WJtFt3VXDHjW3F524s4czKcvW2YCfL=
+F4r8NYSW3P7-w81Bw2BBW4r49L-2RJS42W3T1k2w20XmvvW30B0h-3P5393W2Yf1fn36g7dHW3L=
+Rj1m2zQpS7W2-s4SQ3NF4TNW45mg1w4t8zfQW2Ws8xR3T0rhRf4cxKMJ04&_hsenc=3Dp2ANqtz=
+-_J8qGkvnD9MZOs7NRcHal63U1LEfvGke4xnkBBvsRgmKbWYZ332_gFijUHybTsNFgCfQMCsZsp=
+I-AFJywyrAnak026GA&_hsmi=3D395625234 )
+------=_Part_1036318_1723507124.1766430640443
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www=
+.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns=3D"http://www.w3=
+.org/1999/xhtml" xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:=
+v=3D"urn:schemas-microsoft-com:vml" lang=3D"en"><head>
+    <title>Last Call: How Was Your Ride on NJ TRANSIT?</title>
+    <meta property=3D"og:title" content=3D"Last Call: How Was Your Ride on =
+NJ TRANSIT?">
+    <meta name=3D"twitter:title" content=3D"Last Call: How Was Your Ride on=
+ NJ TRANSIT?">
+   =20
+   =20
+   =20
+<meta name=3D"x-apple-disable-message-reformatting">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8">
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0">
+    <!--[if gte mso 9]>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+    <w:WordDocument xmlns:w=3D"urn:schemas-microsoft-com:office:word">
+      <w:DontUseAdvancedTypographyReadingMail/>
+    </w:WordDocument>
+  </xml>
+ =20
+  <style>
+    ul > li {
+      text-indent: -1em;
+    }
+  </style>
+<![endif]-->
+<!--[if mso]>
+<style type=3D"text/css">
+ body, td {font-family: Arial, Helvetica, sans-serif;}
+ .hse-body-wrapper-table {background-color: #EAF0F6;}
+</style>
+<![endif]-->
+<!--[if mso | IE]>
+  <style type=3D"text/css">
+    .hse-column-container { border: none !important; padding: 0 !important;=
+ }
+  </style>
+<![endif]-->
+   =20
+     =20
+ =20
+ =20
+   =20
+  <meta name=3D"generator" content=3D"HubSpot"><meta property=3D"og:url" co=
+ntent=3D"https://ride.njtransit.com/-temporary-slug-93b5be2d-aa36-49c8-85ab=
+-00d76d204f84"><meta name=3D"robots" content=3D"noindex,follow"><!--[if !((=
+mso)|(IE))]><!-- --><style type=3D"text/css">@media only screen and (max-wi=
+dth:639px){img.stretch-on-mobile,.hs_rss_email_entries_table img,.hs-stretc=
+h-cta .hs-cta-img{height:auto !important;width:100% !important}
+.display_block_on_small_screens{display:block}.hs_padded{padding-left:20px =
+!important;padding-right:20px !important}
+.hs-hm,table.hs-hm{display:none}.hs-hd{display:block !important}table.hs-hd=
+{display:table !important}
+}@media only screen and (max-width:639px){.hse-border-m{border-left:1px sol=
+id #eaf0f6 !important;border-right:1px solid #eaf0f6 !important;box-sizing:=
+border-box}
+.hse-border-bottom-m{border-bottom:1px solid #eaf0f6 !important}.hse-border=
+-top-m{border-top:1px solid #eaf0f6 !important}
+.hse-border-top-hm{border-top:none !important}.hse-border-bottom-hm{border-=
+bottom:none !important}
+}.moz-text-html .hse-column-container{max-width:600px !important;width:600p=
+x !important}
+.moz-text-html .hse-column{display:table-cell;vertical-align:top}.moz-text-=
+html .hse-section .hse-size-3{max-width:150px !important;width:150px !impor=
+tant}
+.moz-text-html .hse-section .hse-size-12{max-width:600px !important;width:6=
+00px !important}
+@media only screen and (min-width:640px){.hse-column-container{max-width:60=
+0px !important;width:600px !important}
+.hse-column{display:table-cell;vertical-align:top}.hse-section .hse-size-3{=
+max-width:150px !important;width:150px !important}
+.hse-section .hse-size-12{max-width:600px !important;width:600px !important=
+} }@media only screen and (max-width:639px){.hse-body-wrapper-td{padding-to=
+p:20px !important}
+#section-0 .hse-column-container{background-color:#eaf0f6 !important} }@med=
+ia only screen and (max-width:639px){.hse-body-wrapper-td{padding-bottom:20=
+px !important}
+#section-2 .hse-column-container{background-color:transparent !important}#s=
+ection-2 .hse-column-container{background-color:transparent !important}
+}</style><!--<![endif]--><style type=3D"text/css">#hs_body #hs_cos_wrapper_=
+main a[x-apple-data-detectors]{color:inherit !important;text-decoration:non=
+e !important;font-size:inherit !important;font-family:inherit !important;fo=
+nt-weight:inherit !important;line-height:inherit !important}
+a{text-decoration:underline}p{margin:0}body{-ms-text-size-adjust:100%;-webk=
+it-text-size-adjust:100%;-webkit-font-smoothing:antialiased;moz-osx-font-sm=
+oothing:grayscale}
+table{border-spacing:0;mso-table-lspace:0;mso-table-rspace:0}table,td{borde=
+r-collapse:collapse}
+img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rul=
+e:exactly}
+.ShadowHTML p,.sh-modified-inline p{margin:0}</style></head>
+  <body id=3D"hs_body" bgcolor=3D"#EAF0F6" style=3D"margin:0 !important; pa=
+dding:0 !important; font-family:Arial, sans-serif; font-size:15px; color:#2=
+3496d; word-break:break-word">
+    <div id=3D"preview_text" style=3D"display:none;font-size:1px;color:#EAF=
+0F6;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;=
+" lang=3D"en">Complete to be entered into a drawing for either a monthly pa=
+ss or a $100 gift card. In addition, you will earn 250 NJT Rewards points</=
+div>
+   =20
+<!--[if gte mso 9]>
+<v:background xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"t">
+    <v:fill type=3D"tile" size=3D"100%,100%" color=3D"#ffffff"/>
+</v:background>
+<![endif]-->
+    <div class=3D"hse-body-background" lang=3D"en" style=3D"background-colo=
+r:#eaf0f6" bgcolor=3D"#eaf0f6">
+      <table role=3D"presentation" class=3D"hse-body-wrapper-table" cellpad=
+ding=3D"0" cellspacing=3D"0" style=3D"margin:0; padding:0; width:100% !impo=
+rtant; min-width:320px !important; height:100% !important" width=3D"100%" h=
+eight=3D"100%">
+        <tbody><tr>
+          <td class=3D"hse-body-wrapper-td" valign=3D"top" style=3D"font-fa=
+mily:Arial, sans-serif; font-size:15px; color:#23496d; word-break:break-wor=
+d; padding-top:20px; padding-bottom:20px">
+            <div id=3D"hs_cos_wrapper_main" class=3D"hs_cos_wrapper hs_cos_=
+wrapper_widget hs_cos_wrapper_type_dnd_area" style=3D"color: inherit; font-=
+size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" d=
+ata-hs-cos-type=3D"dnd_area">  <div id=3D"section-0" class=3D"hse-section h=
+se-section-first" style=3D"padding-left:10px; padding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#eaf0f6; padding-bottom:10px; pad=
+ding-top:10px" bgcolor=3D"#eaf0f6">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#eaf0f6">
+      <tr style=3D"background-color:#eaf0f6;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;padding-bottom:10px; padding-top:=
+10px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-0-0" class=3D"hse-column hse-size-12">
+  <div id=3D"hs_cos_wrapper_module-0-0-0" class=3D"hs_cos_wrapper hs_cos_wr=
+apper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; font-size=
+: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-=
+hs-cos-type=3D"module"><table class=3D"hse-image-wrapper" role=3D"presentat=
+ion" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0">
+  <tbody>
+    <tr>
+      <td align=3D"center" valign=3D"top" style=3D"font-family:Arial, sans-=
+serif; color:#23496d; word-break:break-word; text-align:center; padding:10p=
+x 0px; font-size:0px">
+        <img alt=3D"600x207-SurveyNovember2023-1" src=3D"https://ride.njtra=
+nsit.com/hs-fs/hubfs/600x207-SurveyNovember2023-1.png?width=3D1200&amp;upsc=
+ale=3Dtrue&amp;name=3D600x207-SurveyNovember2023-1.png" style=3D"outline:no=
+ne; text-decoration:none; max-width:100%; font-size:16px" width=3D"600" ali=
+gn=3D"middle" class=3D"stretch-on-mobile">
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section-1" class=3D"hse-section" style=3D"padding-left:10px; p=
+adding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#ffffff; padding-bottom:12px; pad=
+ding-top:10px" bgcolor=3D"#ffffff">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;padding-bottom:12px; padding-top:=
+10px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-1-0" class=3D"hse-column hse-size-12">
+    <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" class=3D"" style=3D""><tbody><tr><td class=3D"hs_padded" style=3D=
+"font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:b=
+reak-word; padding:10px 20px"><div id=3D"hs_cos_wrapper_module-1-0-0" class=
+=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=
+=3D"color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-=
+general-type=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_cos_wrapp=
+er_module-1-0-0_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrap=
+per_type_rich_text" style=3D"color: inherit; font-size: inherit; line-heigh=
+t: inherit;" data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"rich_t=
+ext"><p style=3D"text-align:right; line-height:125%" align=3D"right"><a hre=
+f=3D"https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2V2QzfJPW1H3r7p=
+39mr4sW1vWpFD5HnrjmN7qyl183qgz0W95jsWP6lZ3kFW8CGhL14L4zZrW1sbTrB88TLFmMY9zl=
+DhL1h8N6dhfkR-6NYSW11wqry7q_bKhW4hX5zp8Ttq3JW8C_FGy5L_6P0N7-8-KVBZ_xNW3WqGW=
+2755313W2QDdZf68T4-2W46LXBd5zywlJW3p2zV_6n32fqW4Bwm8-4nf1nRW25c9KQ3wMnkXW60=
+dwZ_8gG18XW90HfKf66QcFRW5rxtpT5ZrnPqW78zq6_2DzkZkV1s5PF2GHYGXW3qcv_b1YrnbmW=
+3_Pv_n1Vfn12W199sh-4JGDYNW345V-j53-HmwW4V2qvs7lvbMWW5nX97l5WMSvvW6Xg9kM3DGD=
+6sW1KSchd97hxF9W2dcR0H87tqNLW1j3lt68t98mZW7dpdTX7Sw6lMf13tBxn04" rel=3D"noo=
+pener" style=3D"color:#00a4bd" data-hs-link-id=3D"0" data-hs-link-id-v2=3D"=
+WbqvFY4g" target=3D"_blank"><span style=3D"text-decoration: underline;"><sp=
+an style=3D"font-size: 11px;"><span style=3D"font-size: 12px;">Para Espa=C3=
+=B1ol haga clic aqu=C3=AD</span></span></span></a></p>
+<p style=3D"line-height:125%">Hello from NJ TRANSIT!&nbsp;</p>
+<p style=3D"line-height:125%">&nbsp;</p>
+<p style=3D"line-height:125%">Whether you ride with us every day or just oc=
+casionally, your feedback helps us improve.</p>
+<p style=3D"line-height:125%">&nbsp;</p>
+<p style=3D"line-height:125%; font-weight:bold">Why Participate?</p>
+<p style=3D"line-height:125%">Complete our survey and:</p>
+<ul style=3D"line-height:175%">
+<li style=3D"line-height: 125%;">Enter to win a monthly pass or $100 gift c=
+ard and</li>
+<li style=3D"line-height: 125%;">Earn 250 NJT Rewards points</li>
+<li style=3D"line-height: 125%;">We=E2=80=99re listening =E2=80=93 your opi=
+nion matters to NJ TRANSIT</li>
+</ul>
+<p style=3D"line-height:125%">&nbsp;</p>
+<p style=3D"line-height:125%; font-weight:bold">How to Participate</p>
+<ul style=3D"line-height:175%">
+<li style=3D"line-height: 125%;">Choose the NJ TRANSIT mode below that you =
+use most to begin</li>
+<li style=3D"line-height: 125%;">Use any device =E2=80=94 phone, tablet, or=
+ computer</li>
+<li style=3D"line-height: 125%;">You can complete a survey for each mode yo=
+u use</li>
+</ul>
+<p style=3D"line-height:125%">We truly value your feedback and use it to ma=
+ke real improvements.</p>
+<p style=3D"line-height:125%">&nbsp;</p>
+<p style=3D"line-height:125%">Thanks for riding with us =E2=80=94 and happy=
+ holidays from all of us at NJ TRANSIT!</p></div></div></td></tr></tbody></=
+table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section_1650479903792" class=3D"hse-section" style=3D"padding-=
+left:10px; padding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#ffffff" bgcolor=3D"#ffffff">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:150px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"150" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:150px">
+<![endif]-->
+<div id=3D"column_1650479903792_0" class=3D"hse-column hse-size-3">
+  <div id=3D"hs_cos_wrapper_module_16504799811335" class=3D"hs_cos_wrapper =
+hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; =
+font-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widg=
+et" data-hs-cos-type=3D"module"><table class=3D"hse-image-wrapper" role=3D"=
+presentation" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0">
+  <tbody>
+    <tr>
+      <td class=3D"hs_padded" align=3D"center" valign=3D"top" style=3D"font=
+-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align=
+:center; padding:10px 20px; font-size:0px">
+        <a href=3D"https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2=
+V2QzfJPW1H3r7p39mr4sW1vWpFD5HnrjmN7qyl0z3qgz0W7Y8-PT6lZ3lRW6jMjvc3fgB5LW1tb=
+KL16C0SC8W1PhDQq36R5K7W2BJGxZ8MhYPRW4KFKwP2mTVxxN6lZMywMBTZhW4bwhh698Z9m4W1=
+1xmrg1vVQJPW2Ts_kX69-1X6Vrq9t470kPGfW9gT24v87Hfg_W1bJFpg3X63l5W31Qc8L3-TMz9=
+W6ZPqXD87kPFqW5BjQTX2YZRvHW95qlq-75ZPtGW344jrv31SMfrW7zxG8j6J-q8yVXNCvs7nnZ=
+--W2l91Y-13xqzrN3CrtvCTmW1TW658y4s3_FB8XW6kB3H879HXzWW3kxTls3qcQ9vN2tx7-Fvb=
+9RjW6bmx0g4xFzzWf91X09l04" target=3D"_blank" style=3D"color:#00a4bd" data-h=
+s-link-id=3D"0" data-hs-link-id-v2=3D"rsD5oQyq">
+        <img alt=3D"css_njtlight" src=3D"https://ride.njtransit.com/hs-fs/h=
+ubfs/css_njtlight.jpg?width=3D220&amp;upscale=3Dtrue&amp;name=3Dcss_njtligh=
+t.jpg" style=3D"outline:none; text-decoration:none; border:none; max-width:=
+100%; font-size:16px" width=3D"110" align=3D"middle">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+<div id=3D"hs_cos_wrapper_module_165048098813515" class=3D"hs_cos_wrapper h=
+s_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; f=
+ont-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widge=
+t" data-hs-cos-type=3D"module"><div id=3D"hs_cos_wrapper_module_16504809881=
+3515_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_ri=
+ch_text" style=3D"color: inherit; font-size: inherit; line-height: inherit;=
+" data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"rich_text"><p sty=
+le=3D"text-align:center; line-height:125%" align=3D"center"><a href=3D"http=
+s://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2V2QzfJPW1H3r7p39mr4sW1v=
+WpFD5HnrjmN7qyl0z3qgz0W7Y8-PT6lZ3ltW29WwB64srDlZW17snSZ61tGmPW6p5P4K4QlrzrV=
+zhB8p64rxZkW8x0NNj7Mx76YW5kjsBN3pSGcYW67Ns2H4kf5tXW91fb7y5sBGGwW3BwstQ3r3RC=
+2W1tqKpL1FKNx5W5cd3XZ6pyqH5W1wYWYR4rH1hMW6jX-Vc4jKlLlW1nk0sJ8L2tvzW2QWz416Y=
+NRd_W9c3mqF4x7RfVW2FVqW55ySrFhW8pmGsR9cNSw7F8vxYGRjgTVW256Gnx3RM3MpN11R1-XP=
+5QszW3vP0z_4DJn7YW3r9Bpy4K5Sg9W2n92cc3fPgq7W2WPg-L8GkqDqVgz76L6ZdyY6f2LbB3F=
+04" style=3D"color:#00a4bd; font-weight:bold" rel=3D"noopener" data-hs-link=
+-id=3D"1" data-hs-link-id-v2=3D"qiGGI/Dt" target=3D"_blank">NJ TRANSIT</a><=
+/p>
+<p style=3D"text-align:center; line-height:125%" align=3D"center"><a href=
+=3D"https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2V2QzfJPW1H3r7p3=
+9mr4sW1vWpFD5HnrjmN7qyl0z3qgz0W7Y8-PT6lZ3m_W8wYl-74mz2pPW5qQ3CN8VzSBgN8p6Ql=
+bwB1qYW6tkYyr2SBWc9W5vpw_N6mnhJhN8gpDJ5ClymPW96KScR1vBnlDW2cMsHM3KwTpbW6gJL=
+Bq268Q9RW4Sdz--5364zCW8xsRGJ3VH1BLW6w6Xjx2LY-VZW62Tr9v6cxj_GW94BB015WD6S7W8=
+0MRzP5zLPBnW7j795M2xKpmNMVqnc2jW973N2Dktsrl7GWfW7F2wvY15JWCWVr8XSD67hkFyW8C=
+ZRcp5d5NGbW7RGWfP1lQSB_W2YlJnz1dL9YcW901QXG9d08bDW3qwfkL3Gcjt5W4MQ6F38Xl0Gf=
+f1432yY04" style=3D"color:#00a4bd; font-weight:bold" rel=3D"noopener" data-=
+hs-link-id=3D"2" data-hs-link-id-v2=3D"FZugdzc9" target=3D"_blank">Light Ra=
+il</a></p></div></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+<!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:150px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"150" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:150px">
+<![endif]-->
+<div id=3D"column_1650479903792_1" class=3D"hse-column hse-size-3">
+  <div id=3D"hs_cos_wrapper_module_16504799539314" class=3D"hs_cos_wrapper =
+hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; =
+font-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widg=
+et" data-hs-cos-type=3D"module"><table class=3D"hse-image-wrapper" role=3D"=
+presentation" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0">
+  <tbody>
+    <tr>
+      <td class=3D"hs_padded" align=3D"center" valign=3D"top" style=3D"font=
+-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align=
+:center; padding:10px 20px; font-size:0px">
+        <a href=3D"https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2=
+V2QzfJPW1H3r7p39mr4sW1vWpFD5HnrjmN7qyl0z3qgz0W7Y8-PT6lZ3mcW8ycLLZ7NzNkhW70W=
+PfP7q2P9PW5pszB72Ykk-hV7_PpS7TNB_TW5y5wHx6--7p6W8XdTrs6KZGGgW2TN9RL4TkX_GW7=
+dgbgs35GCH8V5wGN870v1D2VR15n624b3HYW6rS5tk2YXxHfW7TWcJs5zT0-4W8GwS9b1g7HH1W=
+3H6rQX1H9fNjVHdnZS8nP4PQW1Q6z6s7ytHbrW1ybxZS6G44tzW32J70f8t-10lVBTHW46qmQCW=
+N1jTSJs8dJrGN6xhc54FcrY3W5qXRQ23G3rZBW8XgDSX4rYwwQW3tGgNS1Wmt_nW2jYnxR22BpF=
+0W53l02g1yn7kBf6TBGbW04" target=3D"_blank" style=3D"color:#00a4bd" data-hs-=
+link-id=3D"0" data-hs-link-id-v2=3D"ekuWC9ae">
+        <img alt=3D"css_njtrail-1" src=3D"https://ride.njtransit.com/hs-fs/=
+hubfs/css_njtrail-1.jpg?width=3D220&amp;upscale=3Dtrue&amp;name=3Dcss_njtra=
+il-1.jpg" style=3D"outline:none; text-decoration:none; border:none; max-wid=
+th:100%; font-size:16px" width=3D"110" align=3D"middle">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+<div id=3D"hs_cos_wrapper_module_165048097545914" class=3D"hs_cos_wrapper h=
+s_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; f=
+ont-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widge=
+t" data-hs-cos-type=3D"module"><div id=3D"hs_cos_wrapper_module_16504809754=
+5914_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_ri=
+ch_text" style=3D"color: inherit; font-size: inherit; line-height: inherit;=
+" data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"rich_text"><p sty=
+le=3D"line-height:175%; font-weight:bold; text-align:center" align=3D"cente=
+r"><a href=3D"https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2V2Qzf=
+JPW1H3r7p39mr4sW1vWpFD5HnrjmN7qyl0z3qgz0W7Y8-PT6lZ3pyW7wqX6j6CNWlBW1gRPXh60=
+W0nxW2Gn8tC7TSsW8W2XfRzt9f9j2CVrXW0J5Xb-FGW2R7V5K6yGcWYW6CpfY_7gfNN-W53_0h1=
+4VswW4W1Qg-4S2-q_SJW37S6_r9ggLsTN5pjwRRkJtNnW1dKQj64qn2WYW571F5L26W3dwW5j9H=
+Kq934JSQW6txW8y42NrT3N6WdlLQSxmj1N1PhSgwgpmxdW76XXfv7rh428W7fPmHX3pGtXCW3Km=
+FTx7vq7j2W5Cvl-Y5Nx2LDW1XXvLh5VsvtkW4mvYm23RtVqWW1m_Bjw1G_6wzW4YByW72BpH3QW=
+5zLywV1-m7Pnf7Bjzhg04" style=3D"color:#00a4bd; font-weight:bold; text-decor=
+ation:underline" rel=3D"noopener" data-hs-link-id=3D"1" data-hs-link-id-v2=
+=3D"uBhwX5tG" target=3D"_blank">NJ TRANSIT Rail</a></p></div></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+<!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:150px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"150" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:150px">
+<![endif]-->
+<div id=3D"column_1650479903792_2" class=3D"hse-column hse-size-3">
+  <div id=3D"hs_cos_wrapper_module_16504799098313" class=3D"hs_cos_wrapper =
+hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; =
+font-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widg=
+et" data-hs-cos-type=3D"module"><table class=3D"hse-image-wrapper" role=3D"=
+presentation" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0">
+  <tbody>
+    <tr>
+      <td class=3D"hs_padded" align=3D"center" valign=3D"top" style=3D"font=
+-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align=
+:center; padding:10px 20px; font-size:0px">
+        <a href=3D"https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2=
+V2QzfJPW1H3r7p39mr4sW1vWpFD5HnrjmN7qyl0z3qgz0W7Y8-PT6lZ3nJW5nQdD65Hk00xW7mQ=
+_qD6MF0YZW8HX2b94GbndfW5jJzBL5TsXDtVpsBPg3R3BKtVlbHff1v-SRTW1Y5lZ925mg6ZW1Y=
+mP7g5dG4dcVMF51-3FTtXNW78qHml7VhmF8W51H7cz4HR0zdW2LQQgR8m2JZbW4K9x-N6dkCHFW=
+4CX_wq4_4RpXN8FxgS5QjC2kW7PKL064Rx41wW658xwj7l7_RZW8LsMMV4X8V9LW373fMC8GcPC=
+HW30SWWy7R7ZfJW5m2bvY82XX3KMPYqwLbpS_LVYnx0Z58BD7JW1nNPDJ6kz4CfV7X8B53-MQ8D=
+N57pMDrrfJ9Gf1jbXGP04" target=3D"_blank" style=3D"color:#00a4bd" data-hs-li=
+nk-id=3D"0" data-hs-link-id-v2=3D"CNUUyme4">
+        <img alt=3D"NJ Transit Bus" src=3D"https://ride.njtransit.com/hs-fs=
+/hubfs/css_njtbus-1.jpg?width=3D220&amp;upscale=3Dtrue&amp;name=3Dcss_njtbu=
+s-1.jpg" style=3D"outline:none; text-decoration:none; border:none; max-widt=
+h:100%; font-size:16px" width=3D"110" align=3D"middle">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+<div id=3D"hs_cos_wrapper_module_165048096270613" class=3D"hs_cos_wrapper h=
+s_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; f=
+ont-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widge=
+t" data-hs-cos-type=3D"module"><div id=3D"hs_cos_wrapper_module_16504809627=
+0613_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_ri=
+ch_text" style=3D"color: inherit; font-size: inherit; line-height: inherit;=
+" data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"rich_text"><p sty=
+le=3D"font-size:15px; line-height:175%; text-align:center; font-weight:bold=
+" align=3D"center"><a href=3D"https://ride.njtransit.com/e3t/Ctc/LZ+113/d2m=
+DKH04/VVvn2V2QzfJPW1H3r7p39mr4sW1vWpFD5HnrjmN7qyl0z3qgz0W7Y8-PT6lZ3kwW3fsx6=
+B1g3KYMW1XYZBk3p32wHW3GtgF_81bSK_W2rSKRk6sF87lW4r3Xwt66FtFpW57C8cp3x9zxsVP_=
+9NZ7RWlkrW6dQHLx32s8DPN7pMJ6Mfp7P6W7xcfPJ1ZBR2dW2V9hrP6-dJLSW2gmmcP5wsnLBW8=
+SslPm1KHBXCW8_CzdB6YTK_fW3PdpTv6c_6BQW90znyQ9lNDcDW2g1tWJ78zDr2W1xGvJK58TTY=
+HW74pmDR92C_VxW3SPfmX30KyR1W4cydm73_w3HgW20Znz-50JJQ4W6XHpZs7yxBybW37Txkx8d=
+BpvSW3Jk0-v6cxSKsW6L3hbd6Byjc1f2mSm2004" style=3D"color:#00a4bd; font-weigh=
+t:bold" rel=3D"noopener" data-hs-link-id=3D"1" data-hs-link-id-v2=3D"d/MIRn=
+W+" target=3D"_blank">NJ TRANSIT Bus</a></p></div></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+<!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:150px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"150" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:150px">
+<![endif]-->
+<div id=3D"column_1650479903792_3" class=3D"hse-column hse-size-3">
+  <div id=3D"hs_cos_wrapper_module_16504803236187" class=3D"hs_cos_wrapper =
+hs_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; =
+font-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widg=
+et" data-hs-cos-type=3D"module"><table class=3D"hse-image-wrapper" role=3D"=
+presentation" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0">
+  <tbody>
+    <tr>
+      <td class=3D"hs_padded" align=3D"center" valign=3D"top" style=3D"font=
+-family:Arial, sans-serif; color:#23496d; word-break:break-word; text-align=
+:center; padding:10px 20px; font-size:0px">
+        <a href=3D"https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2=
+V2QzfJPW1H3r7p39mr4sW1vWpFD5HnrjmN7qyl0T3qgz0W8wLKSR6lZ3mWW1JM_dr8_jz7QW6dZ=
+VLk8nNMggW6HDVHV4FzH83W39zPdC1bzvfTVb9-S58470ltW1cFf2Y1HRm66W63mqJs1s1qtzW6=
+-9H-S5mM695W51ts5g2BGP8nW7Pnp3098wQ4wW4gc3xq1DcF96W88fd68380xLMW99jbY55NBKg=
+wW4D6W915X4XjyW3L7xR33fbRZCW1bJHwn5FqNS3N149xNdj1sfxW1221BV7lc96BW2md1bQ8yf=
+B07VZLrDM1rWWf7W3NxLKf72mQ6BVP9JqL3yphNVW21y1Mv7G42vkW5n3lMh79kSjfW3q2zbR7z=
+C1S9W5Rg_Qs4NJ_cdW1P-kH44FM_XZVWb_ZQ1qF31Vf9kPjRs04" target=3D"_blank" styl=
+e=3D"color:#00a4bd" data-hs-link-id=3D"0" data-hs-link-id-v2=3D"KbSlfWEq">
+        <img alt=3D"access-1" src=3D"https://ride.njtransit.com/hs-fs/hubfs=
+/access-1.jpg?width=3D220&amp;upscale=3Dtrue&amp;name=3Daccess-1.jpg" style=
+=3D"outline:none; text-decoration:none; border:none; max-width:100%; font-s=
+ize:16px" width=3D"110" align=3D"middle">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+<div id=3D"hs_cos_wrapper_module_165048103733316" class=3D"hs_cos_wrapper h=
+s_cos_wrapper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; f=
+ont-size: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widge=
+t" data-hs-cos-type=3D"module"><div id=3D"hs_cos_wrapper_module_16504810373=
+3316_" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_ri=
+ch_text" style=3D"color: inherit; font-size: inherit; line-height: inherit;=
+" data-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"rich_text"><p sty=
+le=3D"line-height:175%; text-align:center; font-weight:bold" align=3D"cente=
+r"><a href=3D"https://ride.njtransit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2V2Qzf=
+JPW1H3r7p39mr4sW1vWpFD5HnrjmN7qyl0T3qgz0W8wLKSR6lZ3msW8q2gTC4fnGmXW91bWVr7K=
+ZF61W1x5mGl50VLJBN8DNQknnJDwHW2x6DJW2YZHVnV2j-l43BRGDsW7vYQY04bDGvVV6FTf21n=
+mF2JW8NxMlq8gqs7WW8l4wPc50vM6sW79fZB94M0Rd3N8sYXQtcLb-BW3L59cg5DvT5fW3P-5gF=
+4hrxcrW1P-npD7w5kDsW8kC3612scF9tW2j4yrm4msk3FW96VK_w8qvGWJW1_L2CZ32HJ-pVXCM=
+dC18_4kCN4rWYDLcZKNlW1wldJR3RzNtmVKZ81c10LLs1W65-m4b8tH80bW8kmT4-5ZNFKLW3rH=
+w0R8ZkGfYVVfyLX5zFRkLN7WSS3VfKKHXf5hKfSg04" style=3D"color:#00a4bd; font-we=
+ight:bold; text-decoration:underline" rel=3D"noopener" data-hs-link-id=3D"1=
+" data-hs-link-id-v2=3D"ERM9+1G2" target=3D"_blank">Access Link</a></p></di=
+v></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section_1650480341485" class=3D"hse-section" style=3D"padding-=
+left:10px; padding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; background-color:#ffffff" bgcolor=3D"#ffffff">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" width=3D"600" bgcolor=3D"#ffffff">
+      <tr style=3D"background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column_1650480341485_0" class=3D"hse-column hse-size-12">
+    <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" class=3D"" style=3D""><tbody><tr><td class=3D"hs_padded" style=3D=
+"font-family:Arial, sans-serif; font-size:15px; color:#23496d; word-break:b=
+reak-word; padding:10px 20px"><div id=3D"hs_cos_wrapper_module_165048034146=
+08" class=3D"hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_modul=
+e" style=3D"color: inherit; font-size: inherit; line-height: inherit;" data=
+-hs-cos-general-type=3D"widget" data-hs-cos-type=3D"module"><div id=3D"hs_c=
+os_wrapper_module_16504803414608_" class=3D"hs_cos_wrapper hs_cos_wrapper_w=
+idget hs_cos_wrapper_type_rich_text" style=3D"color: inherit; font-size: in=
+herit; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-hs-c=
+os-type=3D"rich_text"><p style=3D"line-height:175%">&nbsp;</p>
+<p style=3D"font-size:12px; line-height:125%"><em>To earn 250 NJT rewards p=
+oints, complete the survey and enter the email address that you used to sig=
+n up for NJT Rewards points. If you are not registered for NJT Rewards poin=
+ts, use the same email address to register at <a href=3D"https://ride.njtra=
+nsit.com/e3t/Ctc/LZ+113/d2mDKH04/VVvn2V2QzfJPW1H3r7p39mr4sW1vWpFD5HnrjmN7qy=
+l0g3qgz0W7lCdLW6lZ3mSW5w94-x4cf6mvW84s6GZ4Gg10gW5kqmNW13ZtnkW4B3GYZ4FvZNyN1=
+TKHcSnV-tTW5802Tr5rW72ZW3w6BBd88Zt7DW4c8m3x5QyfQbW6hB7cx1GNZJRW3YfGLq2d21Zy=
+VCZS_z8L3PwVW3J4DM76XL5Y9N7WlRjHyqlDwV760y_1jdN-dW106DS_8P0C9GW5spvZh8MDdGP=
+N30lm85s1fW-W7yNn9L1l8JqGW1648bH6QtjSnW2xKncZ70NX1WW2_ZYM07K9k66W4zlDb34q-2=
+yXW3vNBPy1QspW_N373Dtj7WYptf5gNV-n04" rel=3D"noopener" style=3D"color:#00a4=
+bd" data-hs-link-id=3D"0" data-hs-link-id-v2=3D"2DJmkPfB" target=3D"_blank"=
+>NJT Rewards</a> </em><em>.NJT Rewards points will be added to your account=
+ by January&nbsp;30, 2026.</em></p>
+<p style=3D"font-size:12px; line-height:125%"><em><span style=3D"font-size:=
+ 9px; color: #2d2d2d;"><span style=3D"font-size: 12px;">If you are unable t=
+o complete the survey via the online link, you can leave a message at 973-4=
+91-4222 and someone will call you back to conduct the survey over the telep=
+hone.</span><br><br></span> </em></p></div></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div>
+  <div id=3D"section-2" class=3D"hse-section hse-section-last" style=3D"pad=
+ding-left:10px; padding-right:10px">
+   =20
+   =20
+      <div class=3D"hse-column-container" style=3D"min-width:280px; max-wid=
+th:600px; margin:0 auto; padding-bottom:20px; padding-top:20px">
+   =20
+    <!--[if (mso)|(IE)]>
+      <table align=3D"center" style=3D"width:600px;" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation">
+      <tr>
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign=3D"top" style=3D"width:600px;padding-bottom:20px; padding-top:=
+20px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role=3D"presentation" width=3D"600" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"width:600px">
+<![endif]-->
+<div id=3D"column-2-0" class=3D"hse-column hse-size-12">
+  <div id=3D"hs_cos_wrapper_module-2-0-0" class=3D"hs_cos_wrapper hs_cos_wr=
+apper_widget hs_cos_wrapper_type_module" style=3D"color: inherit; font-size=
+: inherit; line-height: inherit;" data-hs-cos-general-type=3D"widget" data-=
+hs-cos-type=3D"module"><table role=3D"presentation" class=3D"hse-footer hse=
+-secondary" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=3D"fon=
+t-family:Arial, sans-serif; font-size:12px; line-height:135%; color:#23496d=
+; margin-bottom:0; padding:0">
+  <tbody>
+    <tr>
+      <td align=3D"center" valign=3D"top" style=3D"font-family:Arial, sans-=
+serif; font-size:15px; color:#23496d; word-break:break-word; text-align:cen=
+ter; margin-bottom:0; line-height:135%; padding:10px 20px">
+        <p style=3D"font-family:Arial, sans-serif;font-size:12px;font-weigh=
+t:normal;text-decoration:none;font-style:normal;color:#23496d">
+          NJ TRANSIT, 2 Gateway, 18th Floor, Newark, NJ 07105, United State=
+s
+        </p>
+        <p>
+          <a data-unsubscribe=3D"true" href=3D"https://ride.njtransit.com/h=
+s/preferences-center/en/direct?data=3DW2nXS-N30h-M8W3K295n3FfMhSW2-szLs254c=
+GTW2vwcF52MLxGgW1VfgWm1XfwF4W30Ccg434gnHrW3P1HMC4rfl9pW2FS8hb2FXJvjW21mbHm3=
+ZTR7cW3S_grj3DSKWkW2HVllX3f__fdW2-N65v2HZ78rW3g0t341N5_1pW2PK3r_2YCGZwW2WH_=
+cP4fw99qW4rJ3P72s_d2yW3SzL6G2KG4RjW2-8lct2szmNWW2PPF472PC9nvW2PWqxc1-XbhKW1=
+ZbMs42p4f35W2xNbmS3W3YLxW2nN2Tx30D689W3VSz6q1BtMQnW4cLY-92YH04yW49Lgsm3_YmH=
+ZW3ZxVg11_jtc8W3Z-Z_c2CGkY9W30GvPd2vKPlkW3HfxCJ2MPlmwW2PnBCs34BMjRW2szMfd2n=
+FsSKW1Bs7-T2RCmnQW2PPdXf2FXjSRW3BTLTt3X_BxSW2s_Dyc1Q3hmyW3d82Dl2FHM1wW41Ccp=
+y4cwV19W3DX0qc4cjDkHW3yR2_W1Bm-ZvW23jT463gdYf4W49lxw53NH7H9W3g8mnm3NBW-GW2W=
+JtFt3VXDHjW3F524s4czKcvW2YCfLF4r8NYSW3P7-w81Bw2BBW4r49L-2RJS42W3T1k2w20Xmvv=
+W30B0h-3P5393W2Yf1fn36g7dHW3LRj1m2zQpS7W2-s4SQ3NF4TNW45mg1w4t8zfQW2Ws8xR3T0=
+rhRf4cxKMJ04&amp;utm_campaign=3D14760005-2025%20Survey%20summer&amp;utm_sou=
+rce=3Dhs_email&amp;utm_medium=3Demail&amp;utm_content=3D395625234&amp;_hsen=
+c=3Dp2ANqtz-_qnB0nfn-H8xESuC0KSprP99zCP5DwguJX13N0rB9zmPkiXOAslg448H--Q2spm=
+e8bKbXlMkOyNk1xfbllkkLqB0YiCw&amp;_hsmi=3D395625234" style=3D"font-family:H=
+elvetica,Arial,sans-serif; font-size:12px; color:#00a4bd; font-weight:norma=
+l; text-decoration:underline; font-style:normal" data-hs-link-id=3D"0" data=
+-hs-link-id-v2=3D"SFRZzEXk" target=3D"_blank">Unsubscribe</a>
+          <a data-unsubscribe=3D"true" href=3D"https://ride.njtransit.com/h=
+s/preferences-center/en/page?data=3DW2nXS-N30h-M8W3K295n3FfMhSW2-szLs254cGT=
+W2vwcF52MLxGgW1VfgWm1XfwF4W30Ccg434gnHrW3P1HMC4rfl9pW2FS8hb2FXJvjW21mbHm3ZT=
+R7cW3S_grj3DSKWkW2HVllX3f__fdW2-N65v2HZ78rW3g0t341N5_1pW2PK3r_2YCGZwW2WH_cP=
+4fw99qW4rJ3P72s_d2yW3SzL6G2KG4RjW2-8lct2szmNWW2PPF472PC9nvW2PWqxc1-XbhKW1Zb=
+Ms42p4f35W2xNbmS3W3YLxW2nN2Tx30D689W3VSz6q1BtMQnW4cLY-92YH04yW49Lgsm3_YmHZW=
+3ZxVg11_jtc8W3Z-Z_c2CGkY9W30GvPd2vKPlkW3HfxCJ2MPlmwW2PnBCs34BMjRW2szMfd2nFs=
+SKW1Bs7-T2RCmnQW2PPdXf2FXjSRW3BTLTt3X_BxSW2s_Dyc1Q3hmyW3d82Dl2FHM1wW41Ccpy4=
+cwV19W3DX0qc4cjDkHW3yR2_W1Bm-ZvW23jT463gdYf4W49lxw53NH7H9W3g8mnm3NBW-GW2WJt=
+Ft3VXDHjW3F524s4czKcvW2YCfLF4r8NYSW3P7-w81Bw2BBW4r49L-2RJS42W3T1k2w20XmvvW3=
+0B0h-3P5393W2Yf1fn36g7dHW3LRj1m2zQpS7W2-s4SQ3NF4TNW45mg1w4t8zfQW2Ws8xR3T0rh=
+Rf4cxKMJ04&amp;utm_campaign=3D14760005-2025%20Survey%20summer&amp;utm_sourc=
+e=3Dhs_email&amp;utm_medium=3Demail&amp;utm_content=3D395625234&amp;_hsenc=
+=3Dp2ANqtz-_qnB0nfn-H8xESuC0KSprP99zCP5DwguJX13N0rB9zmPkiXOAslg448H--Q2spme=
+8bKbXlMkOyNk1xfbllkkLqB0YiCw&amp;_hsmi=3D395625234" style=3D"font-family:He=
+lvetica,Arial,sans-serif; font-size:12px; color:#00a4bd; font-weight:normal=
+; text-decoration:underline; font-style:normal" data-hs-link-id=3D"0" data-=
+hs-link-id-v2=3D"qjPJqCop" target=3D"_blank">Manage preferences</a>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+  =20
+  </div></div>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+ =20
+<img src=3D"https://ride.njtransit.com/e3t/Cto/LZ+113/d2mDKH04/VVvn2V2QzfJP=
+W1H3r7p39mr4sW1vWpFD5HnrjmW7qykN33DfqTq192" alt=3D"" width=3D"1" height=3D"=
+1" border=3D"0" style=3D"display:none!important;min-height:1px!important;wi=
+dth:1px!important;border-width:0!important;margin-top:0!important;margin-bo=
+ttom:0!important;margin-right:0!important;margin-left:0!important;padding-t=
+op:0!important;padding-bottom:0!important;padding-right:0!important;padding=
+-left:0!important"></body></html>
+------=_Part_1036318_1723507124.1766430640443--
