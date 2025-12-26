@@ -1,0 +1,29 @@
+[
+  {
+    "file": "email/sample-4.md",
+    "is_phishing": true,
+    "confidence": 1.0,
+    "neighbors": [
+      {
+        "file": "email/sample-6.md",
+        "label": "Coca Cola prize scam",
+        "similarity": 0.8089848756790161,
+        "is_phishing": true
+      },
+      {
+        "file": "email/sample-10.md",
+        "label": "Fake Microsoft sign-in alert",
+        "similarity": 0.8036366701126099,
+        "is_phishing": true
+      },
+      {
+        "file": "email/sample-9.md",
+        "label": "Fake Coinbase transaction",
+        "similarity": 0.8026577830314636,
+        "is_phishing": true
+      }
+    ],
+    "num_chunks": 1,
+    "phishing_chunks": 1
+  }
+]
