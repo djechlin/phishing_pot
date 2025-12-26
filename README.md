@@ -9,6 +9,21 @@ Phishing Pot is sponsored by:  _the-street.xyz_, a private forum for cybersecuri
 Phishing Pot is a collection of real phishing samples collected via honey pots. The purpose of this repository is to provide a reliable database for researchers and developers of detection solutions. **Pentesters and Red Teamers: This is not a repository of phishing templates!**
 
 
+## Run Classifier
+
+```bash
+pip install sentence-transformers beautifulsoup4 numpy
+
+# Single email
+python classifier.py email/sample-1.eml
+
+# Multiple emails
+python classifier.py email/sample-*.eml
+
+# JSON output
+python classifier.py email/sample-1.eml --json
+```
+
 ## Contribute
 
 You can contribute samples to this repository, however, remember to anonymize the files hiding information that could identify the address of your Honey Pot. All sensitive information should be replaced with ```phishing@pot```. Sometimes the email address is contained within the content, either in the body of the message or in malicious URL arguments. Be sure to check these fields. If the content is encoded in base64, decode it, change the necessary values, re-encode it in base64 (respecting the indentation). You can use the command below to remove the original addresses of all files in a directory:
