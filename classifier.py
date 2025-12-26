@@ -255,22 +255,36 @@ def classify_email(eml_path):
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python classifier.py <email.eml> [--json]")
+        print("Usage: python classifier.py <email.eml> [email2.eml ...] [--json]")
         sys.exit(1)
 
-    eml_path = sys.argv[1]
-    results = classify_email(eml_path)
+    json_mode = "--json" in sys.argv
+    files = [f for f in sys.argv[1:] if not f.startswith("--")]
 
-    if "--json" in sys.argv:
+    all_results = []
+    phishing_count = 0
+
+    for eml_path in files:
+        results = classify_email(eml_path)
+        results["file"] = eml_path
+        all_results.append(results)
+
+        if results["is_phishing"]:
+            phishing_count += 1
+
+        # Print as we go - one line per email
+        if not json_mode:
+            status = "PHISH" if results["is_phishing"] else "LEGIT"
+            nearest = results["neighbors"][0]["label"] if results["neighbors"] else "?"
+            name = Path(eml_path).name
+            print(f"{status} | {name} | {nearest}")
+            sys.stdout.flush()
+
+    if json_mode:
         import json
-        print(json.dumps(results, indent=2))
-    else:
-        print(f"url_mismatch: {results['url_mismatch']}")
-        print(f"is_phishing: {results['is_phishing']} (confidence: {results['confidence']:.1%})")
-        if results["neighbors"]:
-            print("nearest examples:")
-            for n in results["neighbors"]:
-                print(f"  {n['similarity']:.3f} | {n['label']}")
+        print(json.dumps(all_results if len(all_results) > 1 else all_results[0], indent=2))
+    elif len(files) > 1:
+        print(f"\n--- {phishing_count}/{len(files)} phishing ---")
 
 
 if __name__ == "__main__":
